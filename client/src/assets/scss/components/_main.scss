@@ -1,0 +1,67 @@
+.main-container {
+    margin-top: 95px;
+    margin-bottom: 95px;
+}
+
+.list-group:first-child {
+    padding-right: 35px !important;
+}
+
+.list-group:last-child {
+    padding-right: 0px !important;
+}
+
+.card-box-link {
+    padding: 1.25rem;
+    min-height: 240px;
+}
+
+.card-box {
+    display:block;
+    border: 1px solid rgba(0,0,0,.125);
+    margin: 0 auto;
+    text-align: center;
+    padding:30px;
+    color: $color-text;
+}
+
+.Landscape, .landscape {
+    height: 150px;
+}
+
+.Portrait, .portrait {
+    width: 150px;
+    height: 200px
+}
+
+.card-footer, .form-container {
+    button.btn, a.btn {
+        padding: 6px 8px;
+        margin-right: 5px;
+    }
+}
+
+.page-container {
+    height: 800px;
+    margin: 18px;
+    border: 1px solid #ced4da;
+    outline: 1px solid #ced4da;
+    padding: 10px;
+    outline-offset: 14px;
+}
+
+.card-canvas {
+    border: 1px solid black;
+    position: absolute;
+    top: 53%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+}
+
+.image-thumbnail {
+    img {
+        width: 100%;
+        height: 150px;
+        margin-bottom: 20px;
+    }
+}

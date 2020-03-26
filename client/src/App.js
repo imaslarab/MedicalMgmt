@@ -1,44 +1,48 @@
-import React, {Component} from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+
+import './App.scss';
+
+// Routing libraries
+import { BrowserRouter as HashRouter, Route, Switch } from 'react-router-dom';
+import HttpsRedirect from 'react-https-redirect';
+
+import Header from './components/Header';
+
+import HomePage from './views/HomePage';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { apiResponse: "" };
-  }
+    constructor(props) {
+        super(props);
+        this.state = {rehydrated: false};
+    }
 
-  callAPI() {
-      fetch("http://localhost:9000/testAPI")
-          .then(res => res.text())
-          .then(res => this.setState({ apiResponse: res }));
-  }
-
-  componentWillMount() {
-      this.callAPI();
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-        <p className="App-intro">{this.state.apiResponse}</p>
-      </div>
-    );
-  }
+    render() {
+        return (
+        <HttpsRedirect>
+            <HashRouter>
+            <div className="App">
+                <Header />
+                <Switch>
+                    <PublicRoute exact path="/" component={HomePage}></PublicRoute>
+                    {/* <PublicRoute exact path="/card/:cardId" component={CardPage}></PublicRoute>
+                    <PublicRoute path="/recipient-view/:cardId/" component={RecipientCardPage}></PublicRoute> */}
+                </Switch>
+            </div>
+            </HashRouter>
+        </HttpsRedirect>
+        );
+    }
 }
+
+const PublicRoute = ({ component: Component, ...rest }) => (
+    <Route {...rest} render={props => {
+
+        return (
+        <div className="App__wrapper">
+            <Component {...props} />
+        </div>
+        );
+    }
+}/>);
 
 export default App;
