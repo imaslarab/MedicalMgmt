@@ -42,7 +42,7 @@ class PatientPage extends Component {
                 { isLoading ? 
                     <h1 className="h3 mb-4 text-gray-800">Loading ..</h1>
                     :
-                    <div class="row">
+                    <div className="row">
                         {cardsList}
                     </div>
                 }
