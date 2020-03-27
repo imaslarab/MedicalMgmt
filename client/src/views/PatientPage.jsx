@@ -23,17 +23,21 @@ class PatientPage extends Component {
 
         const cardsList = [];
 
+        patients = [
+            {patientId:1, name:"John Trump", age:28},
+            {patientId:2, name:"Mickey Barber", age:15},
+            {patientId:3, name:"Donald Tomgato", age:21},
+            {patientId:4, name:"Sean Mars", age:50},
+            {patientId:5, name:"Adam Newton", age:35},
+            {patientId:6, name:"Monica Geller", age:40},
+            {patientId:7, name:"Chandler Bing", age:50},
+        ];
+
         if(patients) {
             patients.forEach((patient) => {
                 cardsList.push(<PatientCard key={patient.patientId} patient={patient} {...this.props}></PatientCard>);
             });
         }
-
-        cardsList.push(<PatientCard key={1} patient={null}></PatientCard>);
-        cardsList.push(<PatientCard key={2} patient={null}></PatientCard>);
-        cardsList.push(<PatientCard key={3} patient={null}></PatientCard>);
-        cardsList.push(<PatientCard key={4} patient={null}></PatientCard>);
-        cardsList.push(<PatientCard key={5} patient={null}></PatientCard>);
 
         return (
             <div id="content">

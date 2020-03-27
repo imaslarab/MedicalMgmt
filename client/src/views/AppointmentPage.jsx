@@ -22,18 +22,26 @@ class AppointmentPage extends Component {
         let {isLoading, appointments} = this.state;
 
         const cardsList = [];
-
+        
+        let patients = [
+            {patientId:1, name:"John Trump", age:28},
+            {patientId:2, name:"Mickey Barber", age:15},
+            {patientId:3, name:"Donald Tomgato", age:21},
+            {patientId:4, name:"Sean Mars", age:50},
+            {patientId:5, name:"Adam Newton"}
+        ];
+        appointments = [
+            {appointmentId:1, date:"March 27, 200", time:"3:00pm", patient:patients[0]},
+            {appointmentId:2, date:"March 27, 200", time:"4:00pm", patient:patients[1]},
+            {appointmentId:3, date:"March 27, 200", time:"5:00pm", patient:patients[2]},
+            {appointmentId:4, date:"March 28, 200", time:"3:00pm", patient:patients[3]},
+            {appointmentId:5, date:"March 29, 200", time:"3:00pm", patient:patients[4]},
+        ];
         if(appointments) {
             appointments.forEach((appointment) => {
                 cardsList.push(<AppointmentCard key={appointment.appointmentId} appointment={appointment} {...this.props}></AppointmentCard>);
             });
         }
-
-        cardsList.push(<AppointmentCard key={1} patient={null}></AppointmentCard>);
-        cardsList.push(<AppointmentCard key={2} patient={null}></AppointmentCard>);
-        cardsList.push(<AppointmentCard key={3} patient={null}></AppointmentCard>);
-        cardsList.push(<AppointmentCard key={4} patient={null}></AppointmentCard>);
-        cardsList.push(<AppointmentCard key={5} patient={null}></AppointmentCard>);
 
         return (
             <div id="content">

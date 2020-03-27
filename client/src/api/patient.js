@@ -2,7 +2,7 @@ import httpService from '../services/HttpService';
 
 class PatientApi {
     static listAllPatients(callback) {
-        let url = `/patient`;
+        let url = `/patients`;
 
         return httpService.get(url, callback);
     }

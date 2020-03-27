@@ -4,12 +4,14 @@ class AppointmentCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            appointment: props.appointment
+            appointment: props.appointment,
+            patient: props.appointment.patient
         };
     }
 
 	render() {
-        const {appointment} = this.state;
+        const {appointment, patient} = this.state;
+
 		return (
             <div className="row">
                 <div className="col-xl-8 col-md-6 mb-4">
@@ -17,10 +19,10 @@ class AppointmentCard extends Component {
                         <div className="card-body">
                         <div className="row no-gutters align-items-center">
                             <div className="col mr-2">
-                                <div className="text-xs font-weight-bold text-success text-uppercase mb-1">Appointment 1</div>
-                                    <div className="h5 mb-0 font-weight-bold text-gray-800">Date: March 27, 2020</div>
-                                    <div>Time: 3:00 pm</div>
-                                    <div>Patient: Test Patient</div>
+                                <div className="text-xs font-weight-bold text-success text-uppercase mb-1">Appointment {appointment.appointmentId}</div>
+                                    <div className="h5 mb-0 font-weight-bold text-gray-800">Date: {appointment.date}</div>
+                                    <div>Time: {appointment.time}</div>
+                                    <div>Patient: {patient.name}</div>
                                 </div>
                                 <div className="col-auto">
                                     <i className="fa fa-calendar fa-2x text-gray-300"></i>
