@@ -60,8 +60,8 @@ class TopNavbar extends Component {
                                 Settings
                             </a>
                             <div className="dropdown-divider"></div>
-                            <a className="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                <i className="fa fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            <a className="dropdown-item" href="/login">
+                                <i className="fa fa-sign-out fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Logout
                             </a>
                         </div>
