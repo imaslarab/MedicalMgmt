@@ -30,7 +30,7 @@ class LoginPage extends Component {
                                                 <div className="form-group">
                                                     <div className="custom-control custom-checkbox small">
                                                         <input type="checkbox" className="custom-control-input" id="customCheck" />
-                                                        <label className="custom-control-label" for="customCheck">Show Password</label>
+                                                        <label className="custom-control-label">Show Password</label>
                                                     </div>
                                                 </div>
                                                 <a href="/" className="btn btn-primary btn-user btn-block">
