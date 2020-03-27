@@ -28,19 +28,14 @@ class HomePage extends Component {
         // }
 
         return (
-            <div className="container main-container">
+            <div id="content">
+                <div className="container-fluid">
                 { isLoading ? 
-                    <div className="row">Loading... </div> 
+                    <h1 className="h3 mb-4 text-gray-800">Loading ..</h1>
                     :
-                    <div className="row">
-                        <MainSidebar/>
-                        <div className="col-lg-9 list-group">
-                            <div className="row"> 
-                                Empty List
-                            </div>
-                        </div>
-                    </div>
+                    <h1 className="h3 mb-4 text-gray-800">Empty Page</h1>
                 }
+                </div>
             </div>
 		);
 	}

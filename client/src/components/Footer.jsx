@@ -4,8 +4,12 @@ class Footer extends Component {
 
     render() {
         return (
-            <footer className="container-fluid">
-                <p>Footer Text</p>
+            <footer className="sticky-footer bg-white">
+                <div className="container my-auto">
+                <div className="copyright text-center my-auto">
+                    <span>Copyright &copy; Medical Mgmt 2019</span>
+                </div>
+                </div>
             </footer>
         );
     }

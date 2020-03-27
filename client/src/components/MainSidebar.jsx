@@ -29,20 +29,30 @@ class MainSidebar extends Component {
     }
 
     render() {
-        let {recipient, eventType, orientation, cards, isDupilcateCardModalOpen, isShowImagesModalOpen} = this.state;
 
         return(
-            <div className="col-lg-3 list-group">
-                <h3>Create </h3>
-                <br></br>
-                {/* <Form onSubmit={this.createNewCard}>
-                    <Input type="text" name="recipient" value={recipient} onChange={this.onChange} placeholder="Recipient"></Input>
-                    <DropDown name="eventType" value={eventType} onChange={this.onChange} options={CONSTANTS.EVENTS} placeholder="Select an event type"></DropDown>
-                    <DropDown name="orientation" value={orientation} onChange={this.onChange} options={CONSTANTS.ORIENTATIONS} placeholder="Select an orientation"></DropDown>
-                    <button type="submit" className="btn btn-block btn-secondary" disabled={!recipient || !eventType || !orientation}>Create</button>
-                </Form> */}
+        <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <div className="sidebar-brand-icon">
+                <i className="fa fa-user-md"></i>
+                </div>
+                <div className="sidebar-brand-text mx-3">Main Dash</div>
+            </a>
+            <hr className="sidebar-divider my-0"/>
+            <li className="nav-item">
+                <a className="nav-link" href="/appointments">
+                <i className="fa fa-fw fa-tachometer-alt"></i>
+                <span>Appointments</span></a>
+            </li>
 
-            </div>
+            <hr className="sidebar-divider my-0"/>
+            <li className="nav-item">
+                <a className="nav-link" href="/patients">
+                <i className="fa fa-fw fa-tachometer-alt"></i>
+                <span>Patients</span></a>
+            </li>
+            <hr className="sidebar-divider d-none d-md-block" />
+        </ul>
         );
     }  
 }
