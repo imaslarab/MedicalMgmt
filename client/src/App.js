@@ -11,7 +11,8 @@ import Footer from './components/Footer';
 import MainSidebar from './components/MainSidebar';
 import TopNavbar from './components/TopNavbar';
 
-import HomePage from './views/HomePage';
+import PatientPage from './views/PatientPage';
+import AppointmentPage from './views/AppointmentPage';
 import LoginPage from './views/LoginPage';
 
 class App extends Component {
@@ -27,7 +28,8 @@ class App extends Component {
                 <Switch>
                     <PublicRoute exact path="/login" component={LoginPage}></PublicRoute>
                     
-                    <PrivateRoute exact path="/" component={HomePage}></PrivateRoute>
+                    <PrivateRoute exact path="/" component={PatientPage}></PrivateRoute>
+                    <PrivateRoute exact path="/appointments" component={AppointmentPage}></PrivateRoute>
                     {/* <PublicRoute exact path="/card/:cardId" component={CardPage}></PublicRoute>
                     <PublicRoute path="/recipient-view/:cardId/" component={RecipientCardPage}></PublicRoute> */}
                 </Switch>

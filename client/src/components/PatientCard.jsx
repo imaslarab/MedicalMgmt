@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 
-class Card extends Component {
+class PatientCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            key: props.key,
             patient: props.patient
         };
     }
@@ -28,4 +27,4 @@ class Card extends Component {
 	}
 };
 
-export default Card;
+export default PatientCard;

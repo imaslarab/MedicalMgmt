@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import Card from '../components/Card';
+import PatientCard from '../components/PatientCard';
 import PatientApi from '../api/patient';
 
-class HomePage extends Component {
+class PatientPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -25,15 +25,15 @@ class HomePage extends Component {
 
         if(patients) {
             patients.forEach((patient) => {
-                cardsList.push(<Card key={patient.patientId} patient={patient} {...this.props}></Card>);
+                cardsList.push(<PatientCard key={patient.patientId} patient={patient} {...this.props}></PatientCard>);
             });
         }
 
-        cardsList.push(<Card key={1} patient={null}></Card>);
-        cardsList.push(<Card key={2} patient={null}></Card>);
-        cardsList.push(<Card key={3} patient={null}></Card>);
-        cardsList.push(<Card key={4} patient={null}></Card>);
-        cardsList.push(<Card key={5} patient={null}></Card>);
+        cardsList.push(<PatientCard key={1} patient={null}></PatientCard>);
+        cardsList.push(<PatientCard key={2} patient={null}></PatientCard>);
+        cardsList.push(<PatientCard key={3} patient={null}></PatientCard>);
+        cardsList.push(<PatientCard key={4} patient={null}></PatientCard>);
+        cardsList.push(<PatientCard key={5} patient={null}></PatientCard>);
 
         return (
             <div id="content">
@@ -52,4 +52,4 @@ class HomePage extends Component {
 	}
 };
 
-export default HomePage;
+export default PatientPage;

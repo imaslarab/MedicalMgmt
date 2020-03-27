@@ -47,7 +47,7 @@ class MainSidebar extends Component {
 
             <hr className="sidebar-divider my-0"/>
             <li className="nav-item">
-                <a className="nav-link" href="/patients">
+                <a className="nav-link" href="/">
                 <i className="fa fa-users fa-fw"></i>
                 <span>Patients</span></a>
             </li>
