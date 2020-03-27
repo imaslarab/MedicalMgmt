@@ -10,7 +10,7 @@ DROP TABLE VisitDetail CASCADE CONSTRAINTS;
 DROP TABLE BillingInfo_Billed CASCADE CONSTRAINTS;
 
 CREATE TABLE Users(
-userID CHAR(11),
+userID CHAR(16),
 name CHAR(40),
 email CHAR(40),
 password CHAR(40),
@@ -30,7 +30,7 @@ INSERT INTO Users(userID, name, email, password, phone) VALUES ('5120000009', 'D
 INSERT INTO Users(userID, name, email, password, phone) VALUES ('5120000010', 'Mia Davis', 'miad@gmail.com', 'mia123', '6652756834');
 
 CREATE TABLE Employee(
-userID CHAR(11),
+userID CHAR(16),
 PRIMARY KEY (userID),
 FOREIGN KEY (userID) REFERENCES Users (userID));
 
@@ -42,7 +42,7 @@ INSERT INTO Employee(userID) VALUES ('5120000005');
 
 
 CREATE TABLE Admin(
-userID CHAR(11),
+userID CHAR(16),
 PRIMARY KEY (userID),
 FOREIGN KEY (userID) REFERENCES Employee (userID));
 
@@ -50,7 +50,7 @@ INSERT INTO Admin(userID) VALUES ('5120000001');
 INSERT INTO Admin(userID) VALUES ('5120000002');
 
 CREATE TABLE Doctor(
-doctorID CHAR(11),
+doctorID CHAR(16),
 speciality CHAR(100),
 PRIMARY KEY (doctorID),
 FOREIGN KEY (doctorID) REFERENCES Employee (userID));
@@ -60,7 +60,7 @@ INSERT INTO Doctor(doctorID, speciality) VALUES ('5120000004', 'SURGERY, NEUROLO
 INSERT INTO Doctor(doctorID, speciality) VALUES ('5120000005', 'EMERGENCY MEDICINE, SURGERY');
 
 CREATE TABLE Patient(
-patientID CHAR(11),
+patientID CHAR(16),
 address CHAR(100),
 PRIMARY KEY (patientID),
 FOREIGN KEY (patientID) REFERENCES Users (userID));
@@ -72,8 +72,8 @@ INSERT INTO Patient(patientID, address) VALUES ('5120000009', '32 Dwight St, Bro
 INSERT INTO Patient(patientID, address) VALUES ('5120000010', '86 Marshall St, Somerville, MA');
 
 CREATE TABLE Appointment(
-doctorID CHAR(11),
-patientID CHAR(11),
+doctorID CHAR(16),
+patientID CHAR(16),
 appoint_date DATE,
 PRIMARY KEY (patientID, doctorID, appoint_date),
 FOREIGN KEY (patientID) REFERENCES Patient (patientID),
@@ -86,7 +86,7 @@ INSERT INTO Appointment(doctorID, patientID, appoint_date) VALUES ('5120000004',
 INSERT INTO Appointment(doctorID, patientID, appoint_date) VALUES ('5120000005', '5120000010', TO_DATE('2019/08/13', 'yyyy/mm/dd'));
 
 CREATE TABLE Diagnosis(
-diagnosisID CHAR(11),
+diagnosisID CHAR(16),
 description CHAR(200),
 PRIMARY KEY (diagnosisID));
 
@@ -100,7 +100,7 @@ INSERT INTO Diagnosis(diagnosisID, description) VALUES ('0000007', 'Urinary Rete
 
 
 CREATE TABLE Prescription(
-prescriptionID CHAR(11),
+prescriptionID CHAR(16),
 description CHAR(200),
 PRIMARY KEY (prescriptionID));
 
@@ -114,10 +114,10 @@ INSERT INTO Prescription(prescriptionID, description) VALUES ('0000007', 'cathet
 
 
 CREATE TABLE VisitDetail(
-diagnosisID CHAR(11),
-prescriptionID CHAR(11),
-doctorID CHAR(11),
-patientID CHAR(11),
+diagnosisID CHAR(16),
+prescriptionID CHAR(16),
+doctorID CHAR(16),
+patientID CHAR(16),
 appoint_date DATE,
 PRIMARY KEY (patientID, doctorID, appoint_date, diagnosisID, prescriptionID),
 FOREIGN KEY (patientID, doctorID, appoint_date) REFERENCES Appointment (patientID, doctorID, appoint_date),
@@ -132,15 +132,15 @@ INSERT INTO VisitDetail(diagnosisID, prescriptionID, doctorID, patientID, appoin
 
 
 CREATE TABLE BillingInfo_Billed(
-billingID CHAR(11),
+billingID CHAR(16),
 bill_date DATE,
 bill_description CHAR(200),
 amount REAL,
 method CHAR(20),
-diagnosisID CHAR(11),
-prescriptionID CHAR(11),
-doctorID CHAR(11),
-patientID CHAR(11),
+diagnosisID CHAR(16),
+prescriptionID CHAR(16),
+doctorID CHAR(16),
+patientID CHAR(16),
 appoint_date DATE,
 PRIMARY KEY (billingID, patientID, doctorID, appoint_date, diagnosisID, prescriptionID),
 FOREIGN KEY (patientID, doctorID, appoint_date, diagnosisID, prescriptionID) REFERENCES VisitDetail (patientID, doctorID, appoint_date, diagnosisID, prescriptionID));
