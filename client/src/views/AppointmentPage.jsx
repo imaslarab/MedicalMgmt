@@ -49,8 +49,7 @@ class AppointmentPage extends Component {
                 <h1 className="h3 mb-4 text-gray-800">Appointment List</h1>
                 { isLoading ? 
                     <h1 className="h3 mb-4 text-gray-800">Loading ..</h1>
-                    :
-                    cardsList
+                    : <div className="row">{cardsList}</div>
                 }
                 </div>
             </div>

@@ -12,6 +12,7 @@ import MainSidebar from './components/MainSidebar';
 import TopNavbar from './components/TopNavbar';
 
 import PatientPage from './views/PatientPage';
+import PatientProfilePage from './views/PatientProfilePage';
 import AppointmentPage from './views/AppointmentPage';
 import LoginPage from './views/LoginPage';
 
@@ -29,6 +30,7 @@ class App extends Component {
                     <PublicRoute exact path="/login" component={LoginPage}></PublicRoute>
                     
                     <PrivateRoute exact path="/" component={PatientPage}></PrivateRoute>
+                    <PrivateRoute exact path="/patient" component={PatientProfilePage}></PrivateRoute>
                     <PrivateRoute exact path="/appointments" component={AppointmentPage}></PrivateRoute>
                     {/* <PublicRoute exact path="/card/:cardId" component={CardPage}></PublicRoute>
                     <PublicRoute path="/recipient-view/:cardId/" component={RecipientCardPage}></PublicRoute> */}
