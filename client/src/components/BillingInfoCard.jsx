@@ -23,7 +23,7 @@ class BillingInfoCard extends Component {
                                 <div>Amount: {bill.amount}</div>
                             </div>
                             <div className="col-auto">
-                                <i className="fa fa-calendar fa-2x text-gray-300"></i>
+                                <i className="fa fa-clipboard-list fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>
