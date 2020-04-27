@@ -48,7 +48,7 @@ class App extends Component {
                     <PrivateRoute exact path="/p/billings" component={PBilling}></PrivateRoute>
 
                     <PrivateRoute exact path="/d/patients" component={PatientPage}></PrivateRoute>
-                    <PrivateRoute exact path="/d/patient" component={PatientProfilePage}></PrivateRoute>
+                    <PrivateRoute exact path="/d/patient/:patientId" component={PatientProfilePage}></PrivateRoute>
                     <PrivateRoute exact path="/d/appointments" component={AppointmentPage}></PrivateRoute>
                     {/* <PublicRoute exact path="/card/:cardId" component={CardPage}></PublicRoute>
                     <PublicRoute path="/recipient-view/:cardId/" component={RecipientCardPage}></PublicRoute> */}

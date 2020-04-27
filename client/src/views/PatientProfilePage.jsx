@@ -14,11 +14,16 @@ class PatientProfilePage extends Component {
         super(props);
         this.state = {
             isLoading: false,
-            patient: {
-                patientId:1, name:"John Trump", age:28, sex:"Male",
-                phone:900999292,
-                address: "192 Institute Road, Worcester MA"
-            },
+            patients: [
+                {patientId:"1", patientName:"John Trump", age:28, sex:"Male", phoneNumber:'920922029', address:''},
+                {patientId:"2", patientName:"Mickey Barber", age:15, sex:"Male", phoneNumber:'720822029', address:''},
+                {patientId:"3", patientName:"Donald Tomgato", age:21, sex:"Male", phoneNumber:'900208299', address:''},
+                {patientId:"4", patientName:"Sean Mars", age:50, sex:"Male", phoneNumber:'220192029', address:''},
+                {patientId:"5", patientName:"Adam Newton", age:35, sex:"Male", phoneNumber:'09111919', address:''},
+                {patientId:"6", patientName:"Monica Geller", age:40, sex:"Female", phoneNumber:'12302029', address:''},
+                {patientId:"7", patientName:"Rita Bing", age:50, sex:"Female", phoneNumber:'920922029', address:''},
+            ],
+            patient: {},
             appointments: [
                 {appointmentId:1, date:"March 27, 2020", time:"3:00pm", patient:null},
                 {appointmentId:2, date:"April 27, 2020", time:"1:00pm", patient:null},
@@ -35,9 +40,15 @@ class PatientProfilePage extends Component {
     }
 
     componentDidMount() {
-        PatientApi.listAllPatients((response)=> {
-            this.setState({...this.state, isLoading:false, patients:response.patients});
-        });
+        const { patientId } = this.props.match.params;
+
+        let {patients} = this.state;
+        let currentPatient = patients.filter((obj) => obj.patientId==patientId )[0];
+        this.setState({...this.state, patient:currentPatient});
+        
+        // PatientApi.listAllPatients((response)=> {
+        //     this.setState({...this.state, isLoading:false, patients:response.patients});
+        // });
     }
 
     render() {
@@ -68,7 +79,7 @@ class PatientProfilePage extends Component {
                             <img className="img-profile rounded-circle profile-img" src={patientImg} alt="" />
                         </div>
                         <div className="col-md-10 profile-detail">
-                            <h1 className="h3 text-gray-800">{patient.name}</h1>
+                            <h1 className="h3 text-gray-800">{patient.patientName}</h1>
                             <p>Patient ID: {patient.patientId}</p>
                             <p><span>Age: {patient.age}</span><span>Sex: {patient.sex}</span></p>
                             <p>Phone number: {patient.phone}</p>
