@@ -22,7 +22,7 @@ class DiagnosisCard extends Component {
                                 <div>Details: {diagnosis.details}</div>
                             </div>
                             <div className="col-auto">
-                                <i className="fa fa-calendar fa-2x text-gray-300"></i>
+                                <i className="fa fa-medkit fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>

@@ -9718,6 +9718,10 @@ html {
   .text-xs {
     font-size: .7rem;
   }
+
+  .error-text {
+    color:red;
+  }
   
   .text-lg {
     font-size: 1.2rem;
@@ -9800,6 +9804,10 @@ html {
     border-bottom: 0.25rem solid #36b9cc !important;
   }
   
+  .border-left-inactive {
+    border-left: 0.25rem solid #c0b7b7 !important;
+  }
+
   .border-left-warning {
     border-left: 0.25rem solid #f6c23e !important;
   }
