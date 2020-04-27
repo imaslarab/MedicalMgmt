@@ -24,7 +24,7 @@ class PBilling extends Component {
         const cardsList = [];
 
         
-        let patient = {patientId:1, name:"John Trump", age:28};
+        let patient = {patientId:1, patientName:"Sami Baral", age:25, sex:"Female", phoneNumber:'220922029', address:'Worcester, MA'};
         diagnosis = [
             {diagnosisId: 23423, date:"Dec 20, 2019", details:"Common cold"},
             {diagnosisId: 20222, date:"Sept 11, 2019", details:"Fever, headache"}

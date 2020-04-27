@@ -15,7 +15,7 @@ class PatientProfilePage extends Component {
         this.state = {
             isLoading: false,
             patients: [
-                {patientId:"1", patientName:"John Trump", age:28, sex:"Male", phoneNumber:'920922029', address:''},
+                {patientId:1, patientName:"Sami Baral", age:25, sex:"Female", phoneNumber:'220922029', address:'Worcester, MA'},
                 {patientId:"2", patientName:"Mickey Barber", age:15, sex:"Male", phoneNumber:'720822029', address:''},
                 {patientId:"3", patientName:"Donald Tomgato", age:21, sex:"Male", phoneNumber:'900208299', address:''},
                 {patientId:"4", patientName:"Sean Mars", age:50, sex:"Male", phoneNumber:'220192029', address:''},
@@ -25,9 +25,9 @@ class PatientProfilePage extends Component {
             ],
             patient: {},
             appointments: [
-                {appointmentId:1, date:"March 27, 2020", time:"3:00pm", patient:null},
-                {appointmentId:2, date:"April 27, 2020", time:"1:00pm", patient:null},
-                {appointmentId:3, date:"April 28, 2020", time:"1:00pm", patient:null},
+                {appointmentId:1, date:"April 27, 2020", time:"5:30pm", patient:null},
+                {appointmentId:2, date:"May 20, 2020", time:"1:00pm", patient:null},
+                {appointmentId:3, date:"May 25, 2020", time:"1:00pm", patient:null},
             ],
             billings: [
                 {billingId: 201, date:"Dec 20, 2019", title:"Normal Checkup", amount:"$100"},

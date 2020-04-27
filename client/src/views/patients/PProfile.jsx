@@ -15,9 +15,9 @@ class PProfile extends Component {
         this.state = {
             isLoading: false,
             patient: {
-                patientId:1, name:"John Trump", age:28, sex:"Male",
-                phone:900999292,
-                address: "192 Institute Road, Worcester MA"
+                patientId:1, patientName:"Sami Baral", age:25, sex:"Female",
+                phone:'220922029',
+                address: "Worcester MA"
             }
         };
     }
@@ -36,7 +36,7 @@ class PProfile extends Component {
                             <img className="img-profile rounded-circle profile-img" src={patientImg} alt="" />
                         </div>
                         <div className="col-md-10 profile-detail">
-                            <h1 className="h3 text-gray-800">{patient.name}</h1>
+                            <h1 className="h3 text-gray-800">{patient.patientName}</h1>
                             <p>Patient ID: {patient.patientId}</p>
                             <p><span>Age: {patient.age}</span><span>Sex: {patient.sex}</span></p>
                             <p>Phone number: {patient.phone}</p>

@@ -23,7 +23,7 @@ class AppointmentCard extends Component {
                             <div className={`text-xs font-weight-bold ${inactive ? '' : 'text-success'} text-uppercase mb-1`}>Appointment {appointment.appointmentId}</div>
                                 <div className="h5 mb-0 font-weight-bold text-gray-800">Date: {appointment.date}</div>
                                 <div>Time: {appointment.time}</div>
-                                {patient ? <div>Patient: {patient.name}</div> : null}
+                                {patient ? <div>Patient: {patient.patientName}</div> : null}
                             </div>
                             <div className="col-auto">
                                 <i className="fa fa-calendar fa-2x text-gray-300"></i>

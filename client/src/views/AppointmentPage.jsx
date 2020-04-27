@@ -36,7 +36,7 @@ class AppointmentPage extends Component {
         const cardsList = [];
         
         let patients = [
-            {patientId:1, patientName:"John Trump", age:28, sex:"Male", phoneNumber:'920922029', address:''},
+            {patientId:1, patientName:"Sami Baral", age:25, sex:"Female", phoneNumber:'220922029', address:'Worcester, MA'},
             {patientId:2, patientName:"Mickey Barber", age:15, sex:"Male", phoneNumber:'720822029', address:''},
             {patientId:3, patientName:"Donald Tomgato", age:21, sex:"Male", phoneNumber:'900208299', address:''},
             {patientId:4, patientName:"Sean Mars", age:50, sex:"Male", phoneNumber:'220192029', address:''},
@@ -45,15 +45,17 @@ class AppointmentPage extends Component {
             {patientId:7, patientName:"Rita Bing", age:50, sex:"Female", phoneNumber:'920922029', address:''},
         ];
         appointments = [
-            {appointmentId:1, date:"March 27, 200", time:"3:00pm", patient:patients[0]},
-            {appointmentId:2, date:"March 27, 200", time:"4:00pm", patient:patients[1]},
-            {appointmentId:3, date:"March 27, 200", time:"5:00pm", patient:patients[2]},
-            {appointmentId:4, date:"March 28, 200", time:"3:00pm", patient:patients[3]},
-            {appointmentId:5, date:"March 29, 200", time:"3:00pm", patient:patients[4]},
+            {appointmentId:1, date:"April 27, 2020", time:"5:30pm", patient:patients[3]},
+            {appointmentId:2, date:"April 27, 2020", time:"6:00pm", patient:patients[2]},
+            {appointmentId:3, date:"April 27, 2020", time:"6:30pm", patient:patients[7]},
+            {appointmentId:4, date:"April 28, 2020", time:"4:00pm", patient:patients[4]},
+            {appointmentId:5, date:"May 1, 2020", time:"5:00pm", patient:patients[2]},
+            {appointmentId:6, date:"May 3, 2020", time:"3:00pm", patient:patients[0]},
+            {appointmentId:7, date:"May 25, 2020", time:"3:00pm", patient:patients[1]},
         ];
         if(appointments) {
             appointments.forEach((appointment) => {
-                cardsList.push(<AppointmentCard key={appointment.appointmentId} appointment={appointment} {...this.props}></AppointmentCard>);
+                cardsList.push(<AppointmentCard key={appointment.appointmentId} patient={appointment.patient} appointment={appointment} {...this.props}></AppointmentCard>);
             });
         }
 

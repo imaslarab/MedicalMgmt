@@ -26,9 +26,9 @@ class PAppointment extends Component {
 
         const pastCards = [];
         
-        let patient = {patientId:1, name:"John Trump", age:28};
+        let patient = {patientId:1, patientName:"Sami Baral", age:25, sex:"Female", phoneNumber:'220922029', address:'Worcester, MA'};
         appointments = [
-            {appointmentId:21, date:"April 27, 2020", time:"3:00pm"},
+            {appointmentId:21, date:"April 27, 2020", time:"5:30pm"},
             {appointmentId:22, date:"June 27, 2020", time:"4:00pm"},
             {appointmentId:23, date:"August 27, 2020", time:"3:30pm"}
         ];

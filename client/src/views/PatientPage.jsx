@@ -12,7 +12,7 @@ class PatientPage extends Component {
         this.state = {
             isLoading: false,
             patients: [
-                {patientId:1, patientName:"John Trump", age:28, sex:"Male", phoneNumber:'920922029', address:''},
+                {patientId:1, patientName:"Sami Baral", age:25, sex:"Female", phoneNumber:'220922029', address:'Worcester, MA'},
                 {patientId:2, patientName:"Mickey Barber", age:15, sex:"Male", phoneNumber:'720822029', address:''},
                 {patientId:3, patientName:"Donald Tomgato", age:21, sex:"Male", phoneNumber:'900208299', address:''},
                 {patientId:4, patientName:"Sean Mars", age:50, sex:"Male", phoneNumber:'220192029', address:''},
