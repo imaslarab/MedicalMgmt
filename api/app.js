@@ -1,47 +1,86 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var cors = require("cors");
+const webServer = require('./services/web-server.js');
+const database = require('./services/database.js');
+const dbConfig = require('./config/database.js');
+const defaultThreadPoolSize = 4;
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var patientsRouter = require('./routes/patients');
-var testAPIRouter = require("./routes/testAPI");
+// Increase thread pool size by poolMax
+process.env.UV_THREADPOOL_SIZE = dbConfig.hrPool.poolMax + defaultThreadPoolSize;
 
-var app = express();
+async function startup() {
+  console.log('Starting application');
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+  try {
+    console.log('Initializing database module');
 
-app.use(cors());
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+    await database.initialize();
+  } catch (err) {
+    console.error(err);
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/patients', patientsRouter);
-app.use("/testAPI", testAPIRouter);
+    process.exit(1); // Non-zero failure code
+  }
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+  try {
+    console.log('Initializing web server module');
+
+    await webServer.initialize();
+  } catch (err) {
+    console.error(err);
+
+    process.exit(1); // Non-zero failure code
+  }
+}
+
+startup();
+
+async function shutdown(e) {
+  let err = e;
+
+  console.log('Shutting down application');
+
+  try {
+    console.log('Closing web server module');
+
+    await webServer.close();
+  } catch (e) {
+    console.error(e);
+
+    err = err || e;
+  }
+
+  try {
+    console.log('Closing database module');
+
+    await database.close();
+  } catch (e) {
+    console.error(e);
+
+    err = err || e;
+  }
+
+  console.log('Exiting process');
+
+  if (err) {
+    process.exit(1); // Non-zero failure code
+  } else {
+    process.exit(0);
+  }
+}
+
+process.on('SIGTERM', () => {
+  console.log('Received SIGTERM');
+
+  shutdown();
 });
 
-// error handler
-app.use(function(err, req, res) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+process.on('SIGINT', () => {
+  console.log('Received SIGINT');
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+  shutdown();
 });
 
-module.exports = app;
+process.on('uncaughtException', err => {
+  console.log('Uncaught exception');
+  console.error(err);
+
+  shutdown(err);
+});
