@@ -1,13 +1,30 @@
 import React, { Component } from 'react';
 import doctorImg from '../assets/images/doctor.svg';
+import patientImg from '../assets/images/patient.svg';
+
+import authService from '../services/AuthService';
+
 class TopNavbar extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            userRole: '',
+            userName: ''
         }
+        this.logout = this.logout.bind(this);
+    }
+
+    logout() {
+        authService.logout();
+        window.location.href = '/login';
+    }
+
+    componentDidMount() {
+        this.setState({userRole: authService.getUserRole()});
     }
 
     render() {
+        let {userRole} = this.state;
 
         return (
             <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -47,20 +64,20 @@ class TopNavbar extends Component {
                     <div className="topbar-divider d-none d-sm-block"></div>
                     <li className="nav-item dropdown no-arrow">
                         <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span className="mr-2 d-none d-lg-inline text-gray-600 small">Dr. Robin</span>
-                            <img className="img-profile rounded-circle" src={doctorImg} alt="" />
+                            <span className="mr-2 d-none d-lg-inline text-gray-600 small">{userRole =='doctor' ? 'Dr. Robin' : 'Sami Baral'}</span>
+                            <img className="img-profile rounded-circle" src={userRole == 'doctor' ? doctorImg : patientImg} alt="" />
                         </a>
                         <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                            <a className="dropdown-item" href="#">
+                            <a className="dropdown-item" href={userRole =='doctor' ? '/' : '/p/profile'}>
                                 <i className="fa fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Profile
                             </a>
-                            <a className="dropdown-item" href="#">
+                            {/* <a className="dropdown-item" href="#">
                                 <i className="fa fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Settings
-                            </a>
+                            </a> */}
                             <div className="dropdown-divider"></div>
-                            <a className="dropdown-item" href="/login">
+                            <a className="dropdown-item" onClick={this.logout}>
                                 <i className="fa fa-sign-out fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Logout
                             </a>
