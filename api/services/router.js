@@ -1,14 +1,6 @@
 const express = require('express');
 const router = new express.Router();
-const employees = require('../controllers/employees.js');
 const patients = require('../controllers/patients.js');
-
-router.route('/employees/:id?')
-    .get(employees.get)
-    .post(employees.post)
-    .put(employees.put)
-    .delete(employees.delete);
-
 
 router.route('/patients')
     .get(patients.getAll);

@@ -27,25 +27,27 @@ async function find(context) {
 module.exports.find = find;
 
 const createSql =
- `insert into users (
+  `insert into users (
+    userid,
     name,
     phone,
     email,
     password
   ) values (
+    :userid,
     :name,
     :email,
     :password
-  ) returning userid
-  into :userid`;
+  )`;
+
 
 async function create(usr) {
   const user = Object.assign({}, usr);
 
-  user.userid = {
-    dir: oracledb.BIND_OUT,
-    type: oracledb.NUMBER
-  }
+  // user.userid = {
+  //   dir: oracledb.BIND_OUT,
+  //   type: oracledb.NUMBER
+  // }
 
   const result = await database.simpleExecute(createSql, user);
 

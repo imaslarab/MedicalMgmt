@@ -1,4 +1,5 @@
 const patients = require('../db_apis/patients.js');
+const util = require('../services/util.js');
 
 async function getAll(req, res, next) {
   try {
@@ -78,21 +79,26 @@ function getUserFromRec(req) {
 
 async function post(req, res, next) {
   try {
-    // let user = getUserFromReq(req);
-    // user = await users.create(user);
-    let patient = getPatientFromRec(req);
+    let user = getUserFromReq(req);
+    user = await users.create(user);
 
-    patient = await patients.create(patient);
+    if(users !== null) {
+      let patient = getPatientFromRec(req);
+      patient.patientid = users.userid;
 
-    if (patient !== null) {
-      res.contentType('application/json').status(200);
-      res.send(JSON.stringify(patient));
-    } else {
-      res.status(404).send(JSON.stringify({
-        status: 404,
-        message: "Error creating patient information",
-        detailed_message: err.message
-      }));
+      console.log(users);
+      patient = await patients.create(patient);
+
+      if (patient !== null) {
+        res.contentType('application/json').status(200);
+        res.send(JSON.stringify(patient));
+      } else {
+        res.status(404).send(JSON.stringify({
+          status: 404,
+          message: "Error creating patient information",
+          detailed_message: err.message
+        }));
+      }
     }
   } catch (err) {
     next(err);

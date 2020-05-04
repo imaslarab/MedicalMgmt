@@ -40,24 +40,20 @@ const findAllSql =
   module.exports.findAll = findAll;
 
 const createSql =
- `insert into patient (
+  `insert into patient (
+    patientid,
     address,
     sex,
     dob
   ) values (
+    :patientid,
     :address,
     :sex,
     :dob
-  ) returning patientid
-  into :patientid`;
+  )`;
 
 async function create(p) {
   const patient = Object.assign({}, p);
-
-  patient.patientid = {
-    dir: oracledb.BIND_OUT,
-    type: oracledb.NUMBER
-  }
 
   const result = await database.simpleExecute(createSql, patient);
 

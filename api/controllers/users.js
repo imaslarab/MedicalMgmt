@@ -1,4 +1,5 @@
 const users = require('../db_apis/users.js');
+const util = require('../services/util.js');
 
 async function get(req, res, next) {
   try {
@@ -45,6 +46,7 @@ function getUserFromRec(req) {
 async function post(req, res, next) {
   try {
     let user = getUserFromReq(req);
+    user.userid = util.getRandomId();
     user = await users.create(user);
 
     if (user !== null) {
