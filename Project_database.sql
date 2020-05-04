@@ -62,14 +62,16 @@ INSERT INTO Doctor(doctorID, speciality) VALUES ('5120000005', 'EMERGENCY MEDICI
 CREATE TABLE Patient(
 patientID CHAR(16),
 address CHAR(100),
+sex CHAR(16),
+dob Date,
 PRIMARY KEY (patientID),
 FOREIGN KEY (patientID) REFERENCES Users (userID));
 
-INSERT INTO Patient(patientID, address) VALUES ('5120000006', '175 Freedom St, Brookline, MA');
-INSERT INTO Patient(patientID, address) VALUES ('5120000007', '75 Elm St, Worcester, MA');
-INSERT INTO Patient(patientID, address) VALUES ('5120000008', '258 St Paul St, Brookline, MA');
-INSERT INTO Patient(patientID, address) VALUES ('5120000009', '32 Dwight St, Brookline, MA');
-INSERT INTO Patient(patientID, address) VALUES ('5120000010', '86 Marshall St, Somerville, MA');
+INSERT INTO Patient(patientID, address, sex, dob) VALUES ('5120000006', '175 Freedom St, Brookline, MA', 'Male', TO_DATE('1994/05/22', 'yyyy/mm/dd'));
+INSERT INTO Patient(patientID, address, sex, dob) VALUES ('5120000007', '75 Elm St, Worcester, MA', 'Male', TO_DATE('1990/04/12','yyyy/mm/dd'));
+INSERT INTO Patient(patientID, address, sex, dob) VALUES ('5120000008', '258 St Paul St, Brookline, MA', 'Male', TO_DATE('1988/09/28','yyyy/mm/dd'));
+INSERT INTO Patient(patientID, address, sex, dob) VALUES ('5120000009', '32 Dwight St, Brookline, MA', 'Male', TO_DATE('1990/04/19','yyyy/mm/dd'));
+INSERT INTO Patient(patientID, address, sex, dob) VALUES ('5120000010', '86 Marshall St, Somerville, MA', 'Female', TO_DATE('2004/05/09','yyyy/mm/dd'));
 
 CREATE TABLE Appointment(
 doctorID CHAR(16),
