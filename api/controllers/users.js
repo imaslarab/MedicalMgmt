@@ -8,7 +8,7 @@ async function get(req, res, next) {
     context.id = parseInt(req.params.id, 10);
 
     const rows = await users.find(context);
-
+    
     if (req.params.id) {
       if (rows.length === 1) {
         res.contentType('application/json').status(200);
@@ -37,7 +37,7 @@ module.exports.get = get;
 async function login(req, res, next) {
   try {
     const rows = await users.login(req.body.email, req.body.password);
-
+    console.log(rows);
     if (req.body.email && req.body.password && rows.length === 1) {
         res.contentType('application/json').status(200);
         res.send(JSON.stringify(rows[0]));
@@ -45,7 +45,7 @@ async function login(req, res, next) {
       res.status(404).send(JSON.stringify({
         status: 404,
         message: "Invalid login",
-        detailed_message: err.message
+        detailed_message: err ? err.message: 'Error'
       }));
     }
   } catch (err) {

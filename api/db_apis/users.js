@@ -31,23 +31,25 @@ const loginSql =
     name "name", 
     email "email", 
     phone "phone", 
-    role "userRole"
+    role "role"
   from users`;
 
 async function login(email, password) { 
-  let binds1 = {};
+  let binds = {};
   let sql = loginSql;
 
   if(email && password) {
-    binds1.email = email;
-    binds1.password = password;
+    binds = {email:email, password:password};
 
-    sql += `\nwhere email = :email and password = :password`;
+    sql += `\nwhere email = :email AND password = :password`;
   }
-  console.log(sql);
-  const result = await database.simpleExecute(loginSql, binds1);
+
+  const result = await database.simpleExecute(sql, binds);
   
-  return result.rows;
+  if(result && result.rows) {
+    return result.rows;
+  }
+  return null;
 }
   
 module.exports.login = login;
@@ -58,12 +60,15 @@ const createSql =
     name,
     phone,
     email,
-    password
+    password,
+    role
   ) values (
     :userid,
     :name,
+    :phone
     :email,
-    :password
+    :password,
+    :role
   )`;
 
 
