@@ -21,6 +21,7 @@ class HttpService {
         const url = URLS.API_URL + path;
 
         xhr.open("GET", url, true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send();
         this.handleResponse(xhr, callback);
 
@@ -33,6 +34,7 @@ class HttpService {
 
         var js = JSON.stringify(data);
         xhr.open("POST", url, true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(js);
 
         this.handleResponse(xhr, callback);

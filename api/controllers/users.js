@@ -34,6 +34,27 @@ async function get(req, res, next) {
 
 module.exports.get = get;
 
+async function login(req, res, next) {
+  try {
+    const rows = await users.login(req.body.email, req.body.password);
+
+    if (req.body.email && req.body.password && rows.length === 1) {
+        res.contentType('application/json').status(200);
+        res.send(JSON.stringify(rows[0]));
+    } else {
+      res.status(404).send(JSON.stringify({
+        status: 404,
+        message: "Invalid login",
+        detailed_message: err.message
+      }));
+    }
+  } catch (err) {
+    next(err);
+  }
+}
+
+module.exports.login = login;
+
 function getUserFromRec(req) {
   const user = {
     name: req.body.name,

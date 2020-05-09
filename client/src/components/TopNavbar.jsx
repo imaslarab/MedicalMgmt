@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import adminImg from '../assets/images/admin.png';
 import doctorImg from '../assets/images/doctor.svg';
 import patientImg from '../assets/images/patient.svg';
 
@@ -25,6 +26,28 @@ class TopNavbar extends Component {
 
     render() {
         let {userRole} = this.state;
+
+        let loginDetails = {
+            name: '',
+            profileIcon: ''
+        }
+
+        switch(userRole) {
+            case 'doctor':
+                loginDetails.name = 'Dr. Robin';
+                loginDetails.profileIcon = doctorImg;
+
+                break;
+            case 'admin':
+                loginDetails.name = 'Jack Ferrante';
+                loginDetails.profileIcon = adminImg;
+                break;
+            case 'patient':
+            default:
+                loginDetails.name = 'Sami Baral';
+                loginDetails.profileIcon = patientImg;
+                break;
+        }
 
         return (
             <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -64,11 +87,12 @@ class TopNavbar extends Component {
                     <div className="topbar-divider d-none d-sm-block"></div>
                     <li className="nav-item dropdown no-arrow">
                         <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span className="mr-2 d-none d-lg-inline text-gray-600 small">{userRole =='doctor' ? 'Dr. Robin' : 'Sami Baral'}</span>
-                            <img className="img-profile rounded-circle" src={userRole == 'doctor' ? doctorImg : patientImg} alt="" />
+                            <span className="mr-2 d-none d-lg-inline text-gray-600 small">{loginDetails.name}</span>
+                            <img className="img-profile rounded-circle" src={loginDetails.profileIcon} alt="" />
                         </a>
+
                         <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                            <a className="dropdown-item" href={userRole =='doctor' ? '/' : '/p/profile'}>
+                            <a className="dropdown-item" href={userRole =='doctor' || userRole == 'admin' ? '/' : '/p/profile'}>
                                 <i className="fa fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Profile
                             </a>

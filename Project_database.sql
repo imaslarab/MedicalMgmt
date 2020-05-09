@@ -15,19 +15,20 @@ name CHAR(40),
 email CHAR(40),
 password CHAR(40),
 phone CHAR(11),
+role CHAR(40),
 PRIMARY KEY (userID),
 UNIQUE (email));
 
-INSERT INTO Users(userID, name, email, password, phone) VALUES ('5120000001', 'Clara Lee', 'claral@gmail.com', 'clara123', '3472101835');
-INSERT INTO Users(userID, name, email, password, phone) VALUES ('5120000002', 'Alex Blunt', 'alexb@gmail.com', 'alex123', '5512101835');
-INSERT INTO Users(userID, name, email, password, phone) VALUES ('5120000003', 'Noah Johnson', 'noahj@gmail.com', 'noah123', '3472301846');
-INSERT INTO Users(userID, name, email, password, phone) VALUES ('5120000004', 'Mason Smith', 'masons@gmail.com', 'mason123', '3472918768');
-INSERT INTO Users(userID, name, email, password, phone) VALUES ('5120000005', 'Olivia Green', 'oliviag@gmail.com', 'olivia123', '3480129835');
-INSERT INTO Users(userID, name, email, password, phone) VALUES ('5120000006', 'Jacob Wilson', 'jacobw@gmail.com', 'jacob123', '3652867564');
-INSERT INTO Users(userID, name, email, password, phone) VALUES ('5120000007', 'Michael Miller', 'michaelm@gmail.com', 'michael123', '5526871743');
-INSERT INTO Users(userID, name, email, password, phone) VALUES ('5120000008', 'James Brown', 'jamesb@gmail.com', 'james123', '9862863476');
-INSERT INTO Users(userID, name, email, password, phone) VALUES ('5120000009', 'Daniel Jones', 'danielj@gmail.com', 'daniel123', '1987698245');
-INSERT INTO Users(userID, name, email, password, phone) VALUES ('5120000010', 'Mia Davis', 'miad@gmail.com', 'mia123', '6652756834');
+INSERT INTO Users(userID, name, email, password, phone, role) VALUES ('5120000001', 'Clara Lee', 'claral@gmail.com', 'clara123', '3472101835', 'admin');
+INSERT INTO Users(userID, name, email, password, phone, role) VALUES ('5120000002', 'Alex Blunt', 'alexb@gmail.com', 'alex123', '5512101835', 'admin');
+INSERT INTO Users(userID, name, email, password, phone, role) VALUES ('5120000003', 'Noah Johnson', 'noahj@gmail.com', 'noah123', '3472301846', 'doctor');
+INSERT INTO Users(userID, name, email, password, phone, role) VALUES ('5120000004', 'Mason Smith', 'masons@gmail.com', 'mason123', '3472918768', 'doctor');
+INSERT INTO Users(userID, name, email, password, phone, role) VALUES ('5120000005', 'Olivia Green', 'oliviag@gmail.com', 'olivia123', '3480129835', 'doctor');
+INSERT INTO Users(userID, name, email, password, phone, role) VALUES ('5120000006', 'Jacob Wilson', 'jacobw@gmail.com', 'jacob123', '3652867564', 'patient');
+INSERT INTO Users(userID, name, email, password, phone, role) VALUES ('5120000007', 'Michael Miller', 'michaelm@gmail.com', 'michael123', '5526871743', 'patient');
+INSERT INTO Users(userID, name, email, password, phone, role) VALUES ('5120000008', 'James Brown', 'jamesb@gmail.com', 'james123', '9862863476', 'patient');
+INSERT INTO Users(userID, name, email, password, phone, role) VALUES ('5120000009', 'Daniel Jones', 'danielj@gmail.com', 'daniel123', '1987698245', 'patient');
+INSERT INTO Users(userID, name, email, password, phone, role) VALUES ('5120000010', 'Mia Davis', 'miad@gmail.com', 'mia123', '6652756834', 'patient');
 
 CREATE TABLE Employee(
 userID CHAR(16),

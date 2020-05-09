@@ -30,7 +30,7 @@ class MainSidebar extends Component {
                 <div className="sidebar-brand-icon">
                 <i className="fa fa-hospital-o"></i>
                 </div>
-                <div className="sidebar-brand-text mx-3">Main Dash</div>
+        <div className="sidebar-brand-text mx-3">{userRole} Dash</div>
             </a>
             <hr className="sidebar-divider my-0"/>
 
@@ -38,14 +38,21 @@ class MainSidebar extends Component {
             { userRole == 'doctor' || userRole == 'admin' ? 
                 <>
                     <li className="nav-item">
-                        <a className="nav-link" href='/d/appointments'>
-                        <i className="fa fa-calendar-o fa-fw"></i>
-                        <span>Appointments</span></a>
-                    </li>
-                    <li className="nav-item">
                         <a className="nav-link" href="/d/patients">
                         <i className="fa fa-users fa-fw"></i>
                         <span>Patients</span></a>
+                    </li>
+                    {userRole == 'admin' ?
+                        <li className="nav-item">
+                            <a className="nav-link" href='/a/doctors'>
+                            <i className="fa fa-user-md fa-fw"></i>
+                            <span>Doctors</span></a>
+                        </li>
+                    : ''}
+                    <li className="nav-item">
+                        <a className="nav-link" href='/d/appointments'>
+                        <i className="fa fa-calendar-o fa-fw"></i>
+                        <span>Appointments</span></a>
                     </li>
                 </>
                 : 

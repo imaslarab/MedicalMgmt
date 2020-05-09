@@ -18,6 +18,7 @@ import LoginPage from './views/LoginPage';
 import PatientPage from './views/PatientPage';
 import PatientProfilePage from './views/PatientProfilePage';
 import AppointmentPage from './views/AppointmentPage';
+import DoctorPage from './views/DoctorPage';
 
 //patients related routes
 import PAppointment from './views/patients/PAppointment';
@@ -50,6 +51,8 @@ class App extends Component {
                     <PrivateRoute exact path="/d/patients" component={PatientPage}></PrivateRoute>
                     <PrivateRoute exact path="/d/patient/:patientId" component={PatientProfilePage}></PrivateRoute>
                     <PrivateRoute exact path="/d/appointments" component={AppointmentPage}></PrivateRoute>
+
+                    <PrivateRoute exact path="/a/doctors" component={DoctorPage}></PrivateRoute>
                     {/* <PublicRoute exact path="/card/:cardId" component={CardPage}></PublicRoute>
                     <PublicRoute path="/recipient-view/:cardId/" component={RecipientCardPage}></PublicRoute> */}
                 </Switch>
@@ -97,7 +100,7 @@ const PrivateDoctorRoute = ({ component: Component, ...rest }) => (
 
         if(AuthService.isLoggedIn) {
             return (
-                AuthService.getUserRole == 'doctor' ? (
+                AuthService.getUserRole == 'doctor' || AuthService.getUserRole == 'admin' ? (
                     <div id="wrapper">
                         <MainSidebar/>
                         <div id="content-wrapper" className="d-flex flex-column">

@@ -1,6 +1,7 @@
-import {httpService}  from "./HttpService";
+import httpService  from "./HttpService";
 import {utilService} from "./UtilService";
 import {StorageKeys, storageRepository} from "./StorageRepository";
+
 
 class AuthService {
     constructor() {
@@ -41,25 +42,36 @@ class AuthService {
 
 
     login(value, password) {
-        let request = {};
-        request.email = value;
-        request.password = password;
-        
-        storageRepository.setItem(StorageKeys.UserName, "test");
-        storageRepository.setItem(StorageKeys.UserId, "123123");
-        storageRepository.setItem(StorageKeys.Email, value);
+        let request = {
+            email: value,
+            password: password
+        };
 
-        switch(password) {
-            case 'doctor':
-            case 'admin':
-                storageRepository.setItem(StorageKeys.UserRole, "doctor");
-                window.location.href = "/";
-                break;
-            case 'patient':
-            default:
-                storageRepository.setItem(StorageKeys.UserRole, "patient");
-                window.location.href = "/";
-                break;
+        
+        let url = '/login';
+        
+        return httpService.post(url, request, (response) => {
+            debugger;
+        });
+        
+        // storageRepository.setItem(StorageKeys.UserName, "test");
+        // storageRepository.setItem(StorageKeys.UserId, "123123");
+        // storageRepository.setItem(StorageKeys.Email, value);
+
+        // switch(password) {
+        //     case 'doctor':
+        //         storageRepository.setItem(StorageKeys.UserRole, "doctor");
+        //         window.location.href = "/";
+        //         break;
+        //     case 'admin':
+        //         storageRepository.setItem(StorageKeys.UserRole, "admin");
+        //         window.location.href = "/";
+        //         break;
+        //     case 'patient':
+        //     default:
+        //         storageRepository.setItem(StorageKeys.UserRole, "patient");
+        //         window.location.href = "/";
+        //         break;
         }
         
 
@@ -88,7 +100,7 @@ class AuthService {
         //     return {status: 'ERROR', error: response.error};
         //     }
         // });
-    }
+    // }
 
 
     saveCredentials(authResult) {

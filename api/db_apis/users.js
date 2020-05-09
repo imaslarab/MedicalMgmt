@@ -26,6 +26,28 @@ async function find(context) {
 
 module.exports.find = find;
 
+const loginSql = 
+`select *
+  from users`;
+
+async function login(email, password) { 
+  let binds1 = {};
+  let sql = loginSql;
+
+  if(email && password) {
+    binds1.email = email;
+    binds1.password = password;
+
+    sql += `\nwhere email = :email and password = :password`;
+  }
+  console.log(sql);
+  const result = await database.simpleExecute(loginSql, binds1);
+  
+  return result.rows;
+}
+  
+module.exports.login = login;
+
 const createSql =
   `insert into users (
     userid,

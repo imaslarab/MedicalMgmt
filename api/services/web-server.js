@@ -1,4 +1,5 @@
 const http = require('http');
+const cors = require('cors');
 const express = require('express');
 const morgan = require('morgan');
 const webServerConfig = require('../config/web-server.js');
@@ -18,6 +19,8 @@ function initialize() {
     app.use(express.json({
       reviver: reviveJson
     }));
+
+    app.use(cors());
 
     // Mount the router at /api so all its routes start with /api
     app.use('/api', router);
