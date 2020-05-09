@@ -62,6 +62,8 @@ function getUserFromRec(req) {
     email: req.body.email,
     password: req.body.password
   }
+
+  return user;
 }
 
 async function post(req, res, next) {

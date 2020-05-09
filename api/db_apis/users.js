@@ -27,7 +27,11 @@ async function find(context) {
 module.exports.find = find;
 
 const loginSql = 
-`select *
+`select userid "id", 
+    name "name", 
+    email "email", 
+    phone "phone", 
+    role "userRole"
   from users`;
 
 async function login(email, password) { 
