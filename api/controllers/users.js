@@ -68,7 +68,7 @@ function getUserFromRec(req) {
 
 async function post(req, res, next) {
   try {
-    let user = getUserFromReq(req);
+    let user = getUserFromRec(req);
     user.userid = util.getRandomId();
     user = await users.create(user);
 
