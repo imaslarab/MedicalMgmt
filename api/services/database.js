@@ -1,6 +1,8 @@
 const oracledb = require('oracledb');
 const dbConfig = require('../config/database.js');
 
+const util = require('./util.js');
+
 async function initialize() {
   await oracledb.createPool(dbConfig.hrPool);
 }
@@ -24,6 +26,10 @@ function simpleExecute(statement, binds = [], opts = {}) {
       conn = await oracledb.getConnection();
 
       const result = await conn.execute(statement, binds, opts);
+      
+      if(result.rows) {
+          result.rows = util.formatOutputData(result.rows);
+      }
 
       resolve(result);
     } catch (err) {

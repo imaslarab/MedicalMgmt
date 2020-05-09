@@ -38,6 +38,7 @@ async function login(req, res, next) {
   try {
     const rows = await users.login(req.body.email, req.body.password);
     console.log(rows);
+
     if (req.body.email && req.body.password && rows.length === 1) {
         res.contentType('application/json').status(200);
         res.send(JSON.stringify(rows[0]));
@@ -45,7 +46,7 @@ async function login(req, res, next) {
       res.status(404).send(JSON.stringify({
         status: 404,
         message: "Invalid login",
-        detailed_message: err ? err.message: 'Error'
+        detailed_message: 'Error'
       }));
     }
   } catch (err) {
