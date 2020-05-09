@@ -51,57 +51,14 @@ class AuthService {
         let url = '/login';
         
         return httpService.post(url, request, (response) => {
-            debugger;
+            storageRepository.setItem(StorageKeys.UserName, response.name);
+            storageRepository.setItem(StorageKeys.UserId, response.id);
+            storageRepository.setItem(StorageKeys.Email, response.email);
+            storageRepository.setItem(StorageKeys.UserRole, response.role);
+
+            window.location.href = "/";
         });
-        
-        // storageRepository.setItem(StorageKeys.UserName, "test");
-        // storageRepository.setItem(StorageKeys.UserId, "123123");
-        // storageRepository.setItem(StorageKeys.Email, value);
-
-        // switch(password) {
-        //     case 'doctor':
-        //         storageRepository.setItem(StorageKeys.UserRole, "doctor");
-        //         window.location.href = "/";
-        //         break;
-        //     case 'admin':
-        //         storageRepository.setItem(StorageKeys.UserRole, "admin");
-        //         window.location.href = "/";
-        //         break;
-        //     case 'patient':
-        //     default:
-        //         storageRepository.setItem(StorageKeys.UserRole, "patient");
-        //         window.location.href = "/";
-        //         break;
-        }
-        
-
-        // return httpService.login("/auth/login", request)
-        // .then((response) => {
-        //     if (response.status === 'OK' && response.data) {
-        //     if (response.data.accountLocked === true) {
-        //         return {status: 'ERROR', accountLocked: response.data.accountLocked};
-        //     } else {
-        //         const authResult = response.data.authToken;
-
-        //         this.saveCredentials(authResult);
-        //         const url = '/users/' + this.getUserId() + '/user';
-
-        //         return httpService.get(url).then((res) => {
-        //         if (res.data) {
-        //             const userName = res.data.fullName;
-        //             const identifier = this.getIdentifier(res.data);
-        //             storageRepository.setItem(StorageKeys.UserName, userName);
-        //             storageRepository.setItem(StorageKeys.Email, identifier);
-        //         }
-        //         return res;
-        //         });
-        //     }
-        //     } else {
-        //     return {status: 'ERROR', error: response.error};
-        //     }
-        // });
-    // }
-
+    }
 
     saveCredentials(authResult) {
         //save in local storage

@@ -39,6 +39,14 @@ class LoginPage extends Component {
         }
 
         authService.login(email, password);
+
+        window.setInterval(() => {
+            if(!authService.isLoggedIn()) {
+                this.setState({error:true, errorMessage:"Invalid email or password"});
+            } else {
+                this.setState({error:false, errorMessage:""});
+            }
+        }, 500);
     }
 
 

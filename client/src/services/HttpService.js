@@ -16,19 +16,19 @@ class HttpService {
         }
     }
 
-    async get(path, callback) {
+    async get(path, callbackSuccess, callbackError=null) {
         let xhr = new XMLHttpRequest();
         const url = URLS.API_URL + path;
 
         xhr.open("GET", url, true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send();
-        this.handleResponse(xhr, callback);
+        this.handleResponse(xhr, callbackSuccess, callbackError);
 
         return xhr;
     }
 
-    async post(path, data, callback) {
+    async post(path, data, callbackSuccess, callbackError=null) {
         let xhr = new XMLHttpRequest();
         const url = URLS.API_URL + path;
 
@@ -37,7 +37,7 @@ class HttpService {
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(js);
 
-        this.handleResponse(xhr, callback);
+        this.handleResponse(xhr, callbackSuccess, callbackError);
 
         return xhr;
     }

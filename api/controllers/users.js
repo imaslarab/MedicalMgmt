@@ -37,7 +37,6 @@ module.exports.get = get;
 async function login(req, res, next) {
   try {
     const rows = await users.login(req.body.email, req.body.password);
-    console.log(rows);
 
     if (req.body.email && req.body.password && rows.length === 1) {
         res.contentType('application/json').status(200);
