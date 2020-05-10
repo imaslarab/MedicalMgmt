@@ -94,7 +94,7 @@ async function put(req, res, next) {
   try {
     let user = getUserFromRec(req);
 
-    user.userid = parseInt(req.params.userId, 10);
+    user.userid = req.params.userId;
 
     user = await users.update(user);
 
@@ -117,7 +117,7 @@ module.exports.put = put;
 
 async function del(req, res, next) {
   try {
-    const id = parseInt(req.params.id, 10);
+    const id = req.params.id;
 
     const success = await users.delete(id);
 
