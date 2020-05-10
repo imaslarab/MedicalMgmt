@@ -38,9 +38,6 @@ async function login(email, password) {
   let sql = loginSql;
 
   if(email && password) {
-    binds.email = email;
-    binds.password = password;
-
     sql += `\nwhere email = '${email}' AND password = '${password}'`;
   }
   const result = await database.simpleExecute(sql, {});
