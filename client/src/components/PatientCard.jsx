@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { utilService } from '../services/UtilService';
+
 class PatientCard extends Component {
     constructor(props) {
         super(props);
@@ -9,7 +11,8 @@ class PatientCard extends Component {
     }
 
 	render() {
-        const {patient} = this.state;
+        let {patient} = this.state;
+        patient.age = utilService.getAgeFromDob(patient.dob);
 
 		return (
             <div className="col-xl-3 col-md-6 mb-4">
@@ -27,8 +30,10 @@ class PatientCard extends Component {
                     </div>
                     <div className="card-body">
                         <p>Patient Id: {patient.patientId}</p>
-                        <p>Patient Name: {patient.patientName}</p>
-                        <p>Patient Age: {patient.age}</p>
+                        <p>Address: {patient.address}</p>
+                        <p>Phone: {patient.phone}</p>
+                        <p>Sex: {patient.sex}</p>
+                        <p>Age: {patient.age}</p>
                     </div>
                 </div>
             </div>

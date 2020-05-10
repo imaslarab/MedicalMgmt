@@ -11,15 +11,7 @@ class PatientPage extends Component {
         super(props);
         this.state = {
             isLoading: false,
-            patients: [
-                {patientId:1, patientName:"Sami Baral", age:25, sex:"Female", phoneNumber:'220922029', address:'Worcester, MA'},
-                {patientId:2, patientName:"Mickey Barber", age:15, sex:"Male", phoneNumber:'720822029', address:''},
-                {patientId:3, patientName:"Donald Tomgato", age:21, sex:"Male", phoneNumber:'900208299', address:''},
-                {patientId:4, patientName:"Sean Mars", age:50, sex:"Male", phoneNumber:'220192029', address:''},
-                {patientId:5, patientName:"Adam Newton", age:35, sex:"Male", phoneNumber:'09111919', address:''},
-                {patientId:6, patientName:"Monica Geller", age:40, sex:"Female", phoneNumber:'12302029', address:''},
-                {patientId:7, patientName:"Rita Bing", age:50, sex:"Female", phoneNumber:'920922029', address:''},
-            ],
+            patients: [],
             isAddPatientModalOpen: false,
             isEditPatientModalOpen: false,
             currentPatient: {}
@@ -61,9 +53,9 @@ class PatientPage extends Component {
     }
 
     componentDidMount() {
-        // PatientApi.listAllPatients((response)=> {
-        //     this.setState({...this.state, isLoading:false, patients:response.patients});
-        // });
+        PatientApi.listAllPatients((response)=> {
+            this.setState({...this.state, isLoading:false, patients:response});
+        });
     }
 
     render() {

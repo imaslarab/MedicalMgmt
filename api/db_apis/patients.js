@@ -26,7 +26,13 @@ async function find(context) {
 module.exports.find = find;
 
 const findAllSql = 
-`select patient.patientid, users.name, users.phone, patient.address, patient.sex, patient.dob 
+`select 
+  patient.patientid "patientId", 
+  users.name "patientName", 
+  users.phone "phone", 
+  patient.address "address", 
+  patient.sex "sex", 
+  patient.dob  "dob"
   from patient, users
   where patient.patientid = users.userid`;
 
