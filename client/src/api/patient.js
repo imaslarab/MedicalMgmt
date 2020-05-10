@@ -19,13 +19,16 @@ class PatientApi {
         return httpService.post(url, patient, callback);
     }
 
-    static deletePatient(patientId, callback) {
-        let url = `/patients/${patientId}/delete`;
-        let data = {
-            patientId
-        };
+    static editPatient(patient, callback) {
+        let url = `/patients`;
 
-        return httpService.post(url, data, callback);
+        return httpService.put(url, patient, callback);
+    }
+
+    static deletePatient(patientId, callback) {
+        let url = `/patients/${patientId}`;
+
+        return httpService.delete(url, callback);
     }
 
 }

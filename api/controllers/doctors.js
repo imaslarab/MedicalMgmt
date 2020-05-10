@@ -62,16 +62,16 @@ function getDoctorFromRec(req) {
     speciality: req.body.speciality,
   };
 
-  return patient;
+  return doctor;
 }
 
 function getUserFromRec(req) {
   const user = {
-    name: req.body.name,
+    name: req.body.doctorName,
     phone: req.body.phone,
     email: req.body.email,
     password: req.body.password,
-    role: req.body.role
+    role: 'doctor'
   };
 
   return user;

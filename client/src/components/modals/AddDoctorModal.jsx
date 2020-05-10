@@ -5,6 +5,8 @@ import Form from '../Form';
 import Input from '../Input';
 import DropDown from '../DropDown';
 
+import DoctorApi from '../../api/doctor';
+
 class AddDoctorModal extends Component {
     constructor(props) {
         super(props);
@@ -34,6 +36,9 @@ class AddDoctorModal extends Component {
             speciality
         }
 
+        DoctorApi.addDoctor(doctor, (response) => {
+            debugger;
+        });
         this.props.addDoctor(doctor);
         this.props.closeModal();
     }

@@ -70,11 +70,11 @@ function getPatientFromRec(req) {
 
 function getUserFromRec(req) {
   const user = {
-    name: req.body.name,
+    name: req.body.patientName,
     phone: req.body.phone,
     email: req.body.email,
     password: req.body.password,
-    role: req.body.role
+    role: 'patient'
   };
 
   return user;
