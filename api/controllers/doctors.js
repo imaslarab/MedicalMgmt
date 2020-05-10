@@ -29,7 +29,6 @@ module.exports.getAll = getAll;
 async function get(req, res, next) {
   try {
     const context = {};
-
     context.id = req.params.id;
     const rows = await doctors.find(context);
 

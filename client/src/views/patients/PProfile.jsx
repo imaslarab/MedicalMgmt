@@ -56,10 +56,11 @@ class PProfile extends Component {
                                     <i className="fa fa-edit"></i>
                                 </a>
                             </h1>
-                            <p>Patient ID: {patient.patientId}</p>
-                            <p><span>Date of Birth: {utilService.formatDateString(patient.dob)}</span><span>Sex: {patient.sex}</span></p>
-                            <p>Phone number: {patient.phone}</p>
-                            <p>Address: {patient.address}</p>
+                            <p><strong>Patient ID: </strong>{patient.patientId}</p>
+                            <p><span><strong>Date of Birth: </strong>{utilService.formatDateString(patient.dob)}</span>
+                            <span><strong>Sex: </strong>{patient.sex}</span></p>
+                            <p><strong>Phone number: </strong>{patient.phone}</p>
+                            <p><strong>Address: </strong>{patient.address}</p>
                         </div>
                     </div>
                 </div>

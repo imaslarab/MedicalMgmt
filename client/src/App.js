@@ -17,6 +17,7 @@ import LoginPage from './views/LoginPage';
 //doctor related routes
 import PatientPage from './views/PatientPage';
 import PatientProfilePage from './views/PatientProfilePage';
+import DoctorProfilePage from './views/DoctorProfilePage';
 import AppointmentPage from './views/AppointmentPage';
 import DoctorPage from './views/DoctorPage';
 
@@ -51,6 +52,7 @@ class App extends Component {
                     <PrivateRoute exact path="/d/patients" component={PatientPage}></PrivateRoute>
                     <PrivateRoute exact path="/d/patient/:patientId" component={PatientProfilePage}></PrivateRoute>
                     <PrivateRoute exact path="/d/appointments" component={AppointmentPage}></PrivateRoute>
+                    <PrivateRoute exact path="/d/profile" component={DoctorProfilePage}></PrivateRoute>
 
                     <PrivateRoute exact path="/a/doctors" component={DoctorPage}></PrivateRoute>
                     {/* <PublicRoute exact path="/card/:cardId" component={CardPage}></PublicRoute>

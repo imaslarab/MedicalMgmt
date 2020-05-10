@@ -83,7 +83,7 @@ class TopNavbar extends Component {
                         </a>
 
                         <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                            <a className="dropdown-item" href={userRole =='doctor' || userRole == 'admin' ? '/' : '/p/profile'}>
+                            <a className="dropdown-item" href={userRole =='doctor' || userRole == 'admin' ? '/d/profile' : '/p/profile'}>
                                 <i className="fa fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Profile
                             </a>

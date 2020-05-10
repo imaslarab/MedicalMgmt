@@ -8,7 +8,7 @@ const baseQuery =
   users.phone "phone", 
   users.email "email",
   users.password "password",
-  doctor.speciality "speciality",
+  doctor.speciality "speciality"
   from users, doctor
   where doctor.doctorid = users.userid`;
 
