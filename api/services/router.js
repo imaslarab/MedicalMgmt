@@ -1,5 +1,6 @@
 const express = require('express');
 const router = new express.Router();
+
 const patients = require('../controllers/patients.js');
 const doctors = require('../controllers/doctors.js');
 const users = require('../controllers/users.js');
@@ -25,7 +26,8 @@ router.route('/doctors/:id?')
     .delete(doctors.delete);
 
 router.route('/appointments')
-    .get(appointments.getAll);
+    .get(appointments.getAll)
+    .post(appointments.post); // TODO: Allows creating appointments with same doctor and on same date as different patient
 
 router.route('/appointments/patients/:patientid?')
     .get(appointments.get);
@@ -34,7 +36,6 @@ router.route('/appointments/doctors/:doctorid?')
     .get(appointments.get);
 
 // router.route('/appointments/:id?')
-//     .post(appointments.post)
 //     .put(appointments.put)
 //     .delete(appointments.delete);
 

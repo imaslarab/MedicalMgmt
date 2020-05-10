@@ -43,31 +43,28 @@ async function find(context) {
 
 module.exports.find = find;
 
-// const createSql =
-//     `insert into patient (
-//     patientid,
-//     address,
-//     sex,
-//     dob
-//   ) values (
-//     :patientid,
-//     :address,
-//     :sex,
-//     :dob
-//   )`;
-//
-// async function create(p) {
-//     const patient = Object.assign({}, p);
-//
-//     const result = await database.simpleExecute(createSql, patient);
-//
-//     // patient.patientid = result.outBinds.patientid[0];
-//
-//     return patient;
-// }
-//
-// module.exports.create = create;
-//
+const createSql =
+    `insert into appointment (
+    patientID,
+    doctorID,
+    appoint_date
+  ) values (
+    :patientID,
+    :doctorID,
+    :appoint_date
+  )`;
+
+async function create(p) {
+    const appointment = Object.assign({}, p);
+    const result = await database.simpleExecute(createSql, appointment);
+
+    // patient.patientid = result.outBinds.patientid[0];
+
+    return appointment;
+}
+
+module.exports.create = create;
+
 // const updateSql =
 //     `update patient
 //   set address = :address,

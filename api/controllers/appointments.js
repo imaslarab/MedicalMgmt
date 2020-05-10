@@ -59,61 +59,40 @@ async function get(req, res, next) {
 
 module.exports.get = get;
 
-// function getPatientFromRec(req) {
-//     const patient = {
-//         sex: req.body.sex,
-//         address: req.body.address,
-//         dob: req.body.dob
-//     };
-//
-//     return patient;
-// }
-//
-// function getUserFromRec(req) {
-//     const user = {
-//         name: req.body.name,
-//         phone: req.body.phone,
-//         email: req.body.email,
-//         password: req.body.password,
-//         role: req.body.role
-//     };
-//
-//     return user;
-// }
-//
-// async function post(req, res, next) {
-//     try {
-//         let user = getUserFromRec(req);
-//         user.userid = util.getRandomId(8);
-//         console.log("Creating user:");
-//         console.log(user);
-//         user = await users.create(user);
-//
-//         if(user !== null) {
-//             let patient = getPatientFromRec(req);
-//             patient.patientid = user.userid;
-//             console.log("Creating patient:");
-//             console.log(patient);
-//             patient = await patients.create(patient);
-//
-//             if (patient !== null) {
-//                 res.contentType('application/json').status(200);
-//                 res.send(JSON.stringify(patient));
-//             } else {
-//                 res.status(404).send(JSON.stringify({
-//                     status: 404,
-//                     message: "Error creating patient information"
-//                     // detailed_message: err.message
-//                 }));
-//             }
-//         }
-//     } catch (err) {
-//         next(err);
-//     }
-// }
-//
-// module.exports.post = post;
-//
+function getAppointmentFromRec(req) {
+    return {
+        patientID: req.body.patientID,
+        doctorID: req.body.doctorID,
+        appoint_date: req.body.appoint_date
+    };
+}
+
+async function post(req, res, next) {
+    try {
+
+        let appointment = getAppointmentFromRec(req);
+        console.log("Creating appointment:");
+        console.log(appointment);
+        appointment = await appointments.create(appointment);
+
+        if (appointment !== null) {
+            res.contentType('application/json').status(200);
+            res.send(JSON.stringify(appointment));
+        } else {
+            res.status(404).send(JSON.stringify({
+                status: 404,
+                message: "Error creating appointment"
+                // detailed_message: err.message
+            }));
+        }
+        // }
+    } catch (err) {
+        next(err);
+    }
+}
+
+module.exports.post = post;
+
 // async function put(req, res, next) {
 //     try {
 //         let patient = getPatientFromRec(req);
