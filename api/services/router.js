@@ -3,6 +3,7 @@ const router = new express.Router();
 const patients = require('../controllers/patients.js');
 const doctors = require('../controllers/doctors.js');
 const users = require('../controllers/users.js');
+const appointments = require('../controllers/appointments.js');
 
 router.route('/patients')
     .get(patients.getAll);
@@ -22,6 +23,20 @@ router.route('/doctors/:id?')
     .post(doctors.post)
     .put(doctors.put)
     .delete(doctors.delete);
+
+router.route('/appointments')
+    .get(appointments.getAll);
+
+router.route('/appointments/patients/:patientid?')
+    .get(appointments.get);
+
+router.route('/appointments/doctors/:doctorid?')
+    .get(appointments.get);
+
+// router.route('/appointments/:id?')
+//     .post(appointments.post)
+//     .put(appointments.put)
+//     .delete(appointments.delete);
 
 router.route('/login?')
     .post(users.login);
