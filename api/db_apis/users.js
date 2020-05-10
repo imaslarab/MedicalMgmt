@@ -64,7 +64,7 @@ const createSql =
   ) values (
     :userid,
     :name,
-    :phone
+    :phone,
     :email,
     :password,
     :role
@@ -77,11 +77,11 @@ async function create(usr) {
   // user.userid = {
   //   dir: oracledb.BIND_OUT,
   //   type: oracledb.NUMBER
-  // }
+  // };
 
   const result = await database.simpleExecute(createSql, user);
 
-  user.userid = result.outBinds.userid[0];
+  // user.userid = result.outBinds.userid[0];
 
   return user;
 }
@@ -114,7 +114,7 @@ const deleteSql =
     delete from users
     where userid = :userid;
     :rowcount := sql%rowcount;
-  end;`
+  end;`;
 
 async function del(id) {
   const binds = {
@@ -123,7 +123,7 @@ async function del(id) {
       dir: oracledb.BIND_OUT,
       type: oracledb.NUMBER
     }
-  }
+  };
   const result = await database.simpleExecute(deleteSql, binds);
 
   return result.outBinds.rowcount === 1;

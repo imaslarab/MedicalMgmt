@@ -60,8 +60,9 @@ function getUserFromRec(req) {
     name: req.body.name,
     phone: req.body.phone,
     email: req.body.email,
-    password: req.body.password
-  }
+    password: req.body.password,
+    role: req.body.role
+  };
 
   return user;
 }

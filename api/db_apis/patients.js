@@ -64,7 +64,7 @@ async function create(p) {
 
   const result = await database.simpleExecute(createSql, patient);
 
-  patient.patientid = result.outBinds.patientid[0];
+  // patient.patientid = result.outBinds.patientid[0];
 
   return patient;
 }
@@ -91,6 +91,8 @@ async function update(p) {
 
 module.exports.update = update;
 
+// TODO: What is job_history?
+ // We need to delete patientid from any table that references patient (cascade)
 const deleteSql =
  `begin
     delete from job_history
@@ -98,7 +100,7 @@ const deleteSql =
     delete from patient
     where patientid = :patientid;
     :rowcount := sql%rowcount;
-  end;`
+  end;`;
 
 async function del(id) {
   const binds = {
@@ -107,7 +109,7 @@ async function del(id) {
       dir: oracledb.BIND_OUT,
       type: oracledb.NUMBER
     }
-  }
+  };
   const result = await database.simpleExecute(deleteSql, binds);
 
   return result.outBinds.rowcount === 1;

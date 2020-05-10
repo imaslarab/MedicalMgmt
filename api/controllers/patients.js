@@ -1,4 +1,5 @@
 const patients = require('../db_apis/patients.js');
+const users = require('../db_apis/users.js');
 const util = require('../services/util.js');
 
 async function getAll(req, res, next) {
@@ -43,7 +44,7 @@ async function get(req, res, next) {
           detailed_message: err.message
         }));
       }
-    } else {
+    } else { // TODO: tutorial sends a 200 OK code?
       res.status(404).send(JSON.stringify({
         status: 404,
         message: "Error getting the patient information",
@@ -72,20 +73,26 @@ function getUserFromRec(req) {
     name: req.body.name,
     phone: req.body.phone,
     email: req.body.email,
-    password: req.body.password
-  }
+    password: req.body.password,
+    role: req.body.role
+  };
+
+  return user;
 }
 
 async function post(req, res, next) {
   try {
-    let user = getUserFromReq(req);
+    let user = getUserFromRec(req);
+    user.userid = util.getRandomId(8);
+    console.log("Creating user:");
+    console.log(user);
     user = await users.create(user);
 
-    if(users !== null) {
+    if(user !== null) {
       let patient = getPatientFromRec(req);
-      patient.patientid = users.userid;
-
-      console.log(users);
+      patient.patientid = user.userid;
+      console.log("Creating patient:");
+      console.log(patient);
       patient = await patients.create(patient);
 
       if (patient !== null) {

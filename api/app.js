@@ -52,7 +52,7 @@ async function shutdown(e) {
 
     await database.close();
   } catch (e) {
-    console.error(e);
+    console.error(e); // console.log('Encountered error', e);
 
     err = err || e;
   }
