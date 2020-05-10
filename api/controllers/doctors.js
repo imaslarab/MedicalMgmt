@@ -59,23 +59,19 @@ async function get(req, res, next) {
 module.exports.get = get;
 
 function getDoctorFromRec(req) {
-  const doctor = {
+  return {
     speciality: req.body.speciality,
   };
-
-  return doctor;
 }
 
 function getUserFromRec(req) {
-  const user = {
+  return {
     name: req.body.doctorName,
     phone: req.body.phone,
     email: req.body.email,
     password: req.body.password,
     role: 'doctor'
   };
-
-  return user;
 }
 
 
@@ -135,11 +131,10 @@ async function put(req, res, next) {
     user = await users.update(user);
     console.log("user updated ", user);
     if(user !== null) {
-      let doctor = getDoctorFromRec(req);
-      doctor.doctorid = req.params.id;
-      console.log("Updating doctor");
-      console.log(doctor);
-      doctor = await doctors.update(doctor);
+      let doc = getDoctorFromRec(req);
+      doc.doctorid = user.userid;
+
+      let doctor = await doctors.update(doc);
 
       if (doctor !== null) {
         let data = getDoctorData(user, doctor);
@@ -152,6 +147,11 @@ async function put(req, res, next) {
           // detailed_message: err.message
         }));
       }
+    } else {
+      res.status(404).send(JSON.stringify({
+        status: 404,
+        message: "Error updating doctor information"
+      }));
     }
   } catch (err) {
     next(err);

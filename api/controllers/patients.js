@@ -152,6 +152,11 @@ async function put(req, res, next) {
           // detailed_message: err.message
         }));
       }
+    } else {
+      res.status(404).send(JSON.stringify({
+        status: 404,
+        message: "Error updating patient information"
+      }));
     }
   } catch (err) {
     next(err);
