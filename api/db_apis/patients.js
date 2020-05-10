@@ -91,12 +91,10 @@ async function update(p) {
 
 module.exports.update = update;
 
-// TODO: What is job_history?
- // We need to delete patientid from any table that references patient (cascade)
+// TODO: We need to delete patientid from any table that references patient (cascade)
+// This might include: Appointment, VisitDetail, and BillingInfo_Billed
 const deleteSql =
  `begin
-    delete from job_history
-    where patientid = :patientid;
     delete from patient
     where patientid = :patientid;
     :rowcount := sql%rowcount;
