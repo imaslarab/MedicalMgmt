@@ -140,13 +140,13 @@ module.exports.put = put;
 
 async function del(req, res, next) {
   try {
-    const id = parseInt(req.params.id, 10);
-
+    const id = req.params.id;
+    console.log("Deleting: " + id);
     const success = await patients.delete(id);
 
     if (success) {
       res.contentType('application/json').status(200);
-      res.send(JSON.stringify({status:200, message:'Deleted patient'}));
+      res.send(JSON.stringify({status:200, message:'Deleted patient ' + id}));
     } else {
       res.status(404).send(JSON.stringify({
         status: 404,
