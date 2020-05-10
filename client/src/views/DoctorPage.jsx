@@ -33,10 +33,12 @@ class DoctorPage extends Component {
 
 
     deleteDoctor(doctorId) {
-        let {doctors} = this.state;
+        DoctorApi.deleteDoctor(doctorId, () => {
+            let {doctors} = this.state;
 
-        doctors = doctors.filter((doctor) => doctor.doctorId != doctorId);
-        this.setState({doctors});
+            doctors = doctors.filter((doctor) => doctor.doctorId !== doctorId);
+            this.setState({doctors});
+        });
     }
 
     openAddDoctorModal() {

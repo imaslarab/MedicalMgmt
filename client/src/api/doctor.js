@@ -26,7 +26,7 @@ class DoctorApi {
     }
 
     static deleteDoctor(doctorId, callback) {
-        let url = `/doctors/${doctorId}/delete`;
+        let url = `/doctors/${doctorId}`;
 
         return httpService.delete(url, callback);
     }
