@@ -14,8 +14,8 @@ async function getAll(req, res, next) {
       res.set('Content-Type', 'application/json');
       res.status(404).send(JSON.stringify({
           status: 404,
-          message: "Error getting the patient information",
-          detailed_message: err.message
+          message: "Error getting the patient information"
+          // detailed_message: err.message
       }));
     }
   } catch (err) {
@@ -40,15 +40,15 @@ async function get(req, res, next) {
       } else {
         res.status(404).send(JSON.stringify({
           status: 404,
-          message: "Error getting the patient information",
-          detailed_message: err.message
+          message: "Error getting the patient information"
+          // detailed_message: err.message
         }));
       }
     } else { // TODO: tutorial sends a 200 OK code?
       res.status(404).send(JSON.stringify({
         status: 404,
-        message: "Error getting the patient information",
-        detailed_message: err.message
+        message: "Error getting the patient information"
+        // detailed_message: err.message
       }));
     }
   } catch (err) {
@@ -101,8 +101,8 @@ async function post(req, res, next) {
       } else {
         res.status(404).send(JSON.stringify({
           status: 404,
-          message: "Error creating patient information",
-          detailed_message: err.message
+          message: "Error creating patient information"
+          // detailed_message: err.message
         }));
       }
     }
@@ -116,9 +116,9 @@ module.exports.post = post;
 async function put(req, res, next) {
   try {
     let patient = getPatientFromRec(req);
-
-    patient.patientid = parseInt(req.params.patientId, 10);
-
+    patient.patientid = req.params.id;
+    console.log("Updating patient");
+    console.log(patient);
     patient = await patients.update(patient);
 
     if (patient !== null) {
@@ -127,8 +127,8 @@ async function put(req, res, next) {
     } else {
       res.status(404).send(JSON.stringify({
         status: 404,
-        message: "Error updating patient information",
-        detailed_message: err.message
+        message: "Error updating patient information"
+        // detailed_message: err.message
       }));
     }
   } catch (err) {
@@ -150,8 +150,8 @@ async function del(req, res, next) {
     } else {
       res.status(404).send(JSON.stringify({
         status: 404,
-        message: "Error deleting the patient",
-        detailed_message: err.message
+        message: "Error deleting the patient"
+        // detailed_message: err.message
       }));
     }
   } catch (err) {

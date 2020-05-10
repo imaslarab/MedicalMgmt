@@ -6,6 +6,7 @@ const users = require('../controllers/users.js');
 router.route('/patients')
     .get(patients.getAll);
 
+// If the route gets an id should that be taken in as the userid in the post method? Or should it just be ignored?
 router.route('/patients/:id?')
     .get(patients.get)
     .post(patients.post)
