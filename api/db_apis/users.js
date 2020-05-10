@@ -77,10 +77,12 @@ async function create(usr) {
   // };
 
   const result = await database.simpleExecute(createSql, user);
-
-  // user.userid = result.outBinds.userid[0];
-
-  return user;
+  console.log("user created inside db");
+  if (result.rowsAffected && result.rowsAffected === 1) {
+    return user;
+  } else {
+    return null;
+  }
 }
 
 module.exports.create = create;

@@ -1,5 +1,6 @@
 const doctors = require('../db_apis/doctors.js');
 const users = require('../db_apis/users.js');
+const employee = require('../db_apis/employee.js');
 const util = require('../services/util.js');
 
 async function getAll(req, res, next) {
@@ -77,30 +78,46 @@ function getUserFromRec(req) {
   return user;
 }
 
+
+function getDoctorData(user, doctor) {
+  return {
+    doctorId: user.userid,
+    doctorName: user.name,
+    phone: user.phone,
+    email: user.email,
+    password: user.password,
+    role: 'doctor',
+    speciality: doctor.speciality
+  };
+}
+
 async function post(req, res, next) {
   try {
     let user = getUserFromRec(req);
     user.userid = util.getRandomId(8);
-    console.log("Creating user:");
-    console.log(user);
-    user = await users.create(user);
 
-    if(user !== null) {
-      let doctor = getDoctorFromRec(req);
-      doctor.doctorid = user.userid;
-      console.log("Creating doctor:");
-      console.log(doctor);
-      doctor = await doctors.create(doctor);
+    let userData = await users.create(user);
+    if(userData !== null) {
+      let emp = await employee.create({userid: user.userid});
 
-      if (doctor !== null) {
-        res.contentType('application/json').status(200);
-        res.send(JSON.stringify(doctor));
-      } else {
-        res.status(404).send(JSON.stringify({
-          status: 404,
-          message: "Error creating doctor information"
-          // detailed_message: err.message
-        }));
+      if(emp !== null) {
+        let doctor = getDoctorFromRec(req);
+        doctor.doctorid = user.userid;
+        console.log("Creating doctor:");
+        console.log(doctor);
+        doctor = await doctors.create(doctor);
+
+        if (doctor !== null) {
+          let data = getDoctorData(user, doctor);
+          res.contentType('application/json').status(200);
+          res.send(JSON.stringify(data));
+        } else {
+          res.status(404).send(JSON.stringify({
+            status: 404,
+            message: "Error creating doctor information"
+            // detailed_message: err.message
+          }));
+        }
       }
     }
   } catch (err) {

@@ -39,7 +39,7 @@ class EditDoctorModal extends Component {
 
     componentWillReceiveProps({doctor}) {
         this.setState({...this.state, doctorName:doctor.doctorName, phone: doctor.phone, 
-            emai:doctor.email, password: doctor.password, speciality: doctor.speciality});
+            email:doctor.email, password: doctor.password, speciality: doctor.speciality});
     }
 
     render() {

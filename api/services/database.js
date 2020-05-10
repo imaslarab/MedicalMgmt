@@ -30,8 +30,9 @@ function simpleExecute(statement, binds = [], opts = {}) {
       if(result.rows) {
           result.rows = util.formatOutputData(result.rows);
       }
-
+      
       resolve(result);
+      console.log("transaction completed");
     } catch (err) {
       reject(err);
     } finally {

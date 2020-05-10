@@ -37,10 +37,9 @@ class AddDoctorModal extends Component {
         }
 
         DoctorApi.addDoctor(doctor, (response) => {
-            debugger;
+            this.props.addDoctor(response);
+            this.props.closeModal();
         });
-        this.props.addDoctor(doctor);
-        this.props.closeModal();
     }
 
     render() {

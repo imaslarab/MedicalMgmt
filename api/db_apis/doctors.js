@@ -57,8 +57,12 @@ async function create(doc) {
   const doctor = Object.assign({}, doc);
 
   const result = await database.simpleExecute(createSql, doctor);
-
-  return doctor;
+  console.log("here");
+  if (result.rowsAffected && result.rowsAffected === 1) {
+    return doctor;
+  } else {
+    return null;
+  }
 }
 
 module.exports.create = create;

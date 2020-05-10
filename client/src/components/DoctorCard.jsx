@@ -28,6 +28,7 @@ class DoctorCard extends Component {
                     <div className="card-body">
                         <p>Doctor Id: {doctor.doctorId}</p>
                         <p>Phone: {doctor.phone}</p>
+                        <p>Email: {doctor.email}</p>
                         <p>Specialization: {doctor.speciality}</p>
                     </div>
                 </div>
