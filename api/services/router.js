@@ -1,6 +1,7 @@
 const express = require('express');
 const router = new express.Router();
 const patients = require('../controllers/patients.js');
+const doctors = require('../controllers/doctors.js');
 const users = require('../controllers/users.js');
 
 router.route('/patients')
@@ -12,6 +13,15 @@ router.route('/patients/:id?')
     .post(patients.post)
     .put(patients.put)
     .delete(patients.delete);
+
+router.route('/doctors')
+    .get(doctors.getAll);
+
+router.route('/doctors/:id?')
+    .get(doctors.get)
+    .post(doctors.post)
+    .put(doctors.put)
+    .delete(doctors.delete);
 
 router.route('/login?')
     .post(users.login);
