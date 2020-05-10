@@ -35,10 +35,12 @@ class PatientPage extends Component {
 
 
     deletePatient(patientId) {
-        let {patients} = this.state;
+        PatientApi.deletePatient(patientId, (response) => {
+            let {patients} = this.state;
 
-        patients = patients.filter((patient) => patient.patientId != patientId);
-        this.setState({patients});
+            patients = patients.filter((patient) => patient.patientId !== patientId);
+            this.setState({patients});
+        });        
     }
 
     openAddPatientModal() {

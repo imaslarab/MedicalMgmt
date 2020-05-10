@@ -97,6 +97,8 @@ const deleteSql =
  `begin
     delete from patient
     where patientid = :patientid;
+    delete from users
+    where userid = :patientid;
     :rowcount := sql%rowcount;
   end;`;
 

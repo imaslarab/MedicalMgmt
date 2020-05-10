@@ -86,9 +86,13 @@ async function update(doc) {
 module.exports.update = update;
 
 const deleteSql =
- `begin
+`begin
     delete from doctor
     where doctorid = :doctorid;
+    delete from employee
+    where userid = :doctorid;
+    delete from users
+    where userid = :doctorid;
     :rowcount := sql%rowcount;
   end;`;
 
