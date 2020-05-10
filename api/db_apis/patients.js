@@ -1,25 +1,26 @@
- const oracledb = require('oracledb');
+const oracledb = require('oracledb');
 const database = require('../services/database.js');
 
 const baseQuery =
- `select patientid "patientId",
-    address "address",
-    sex "sex",
-    dob "dob"
-  from patient`;
+`select 
+  users.userid "patientId", 
+  users.name "patientName", 
+  users.phone "phone", 
+  patient.address "address", 
+  patient.sex "sex", 
+  patient.dob  "dob"
+  from users, patient
+  where patient.patientid = users.userid`;
 
 async function find(context) {
   let query = baseQuery;
-  const binds = {};
 
   if (context.id) {
-    binds.patientid = context.id;
-
-    query += `\nwhere patientid = :patientid`;
+    query += ` AND patient.patientid = '${context.id}'`;
   }
 
-  const result = await database.simpleExecute(query, binds);
-
+  const result = await database.simpleExecute(query, {});
+  
   return result.rows;
 }
 

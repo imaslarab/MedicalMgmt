@@ -7,7 +7,7 @@ class UtilService {
         birthday = new Date(birthday);
         var ageDifMs = Date.now() - birthday.getTime();
         var ageDate = new Date(ageDifMs); // miliseconds from epoch
-        
+
         return Math.abs(ageDate.getUTCFullYear() - 1970);
     }
 
@@ -41,6 +41,15 @@ class UtilService {
         let day = date.getDate();
     
         return weekDay + '. ' + month + '/' + day;
+    }
+
+    formatDateString(date) {
+        date = new Date(date);
+        let year = date.getFullYear();
+        let month = date.getMonth() + 1;
+        let day = date.getDate();
+    
+        return month + '/' + day + '/' + year;
     }
 
     dateToTimestamp(date) {

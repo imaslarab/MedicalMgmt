@@ -7,14 +7,20 @@ class PatientApi {
         return httpService.get(url, callback);
     }
 
+    static getPatient(patientId, callback) {
+        let url = `/patients/${patientId}`;
+
+        return httpService.get(url, callback);
+    }
+
     static addPatient(patient, callback) {
-        let url = `/patient`;
+        let url = `/patients`;
 
         return httpService.post(url, patient, callback);
     }
 
     static deletePatient(patientId, callback) {
-        let url = `/patient/${patientId}/delete`;
+        let url = `/patients/${patientId}/delete`;
         let data = {
             patientId
         };

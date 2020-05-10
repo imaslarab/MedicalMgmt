@@ -34,8 +34,7 @@ const loginSql =
     role "role"
   from users`;
 
-async function login(email, password) { 
-  let binds = {};
+async function login(email, password) {
   let sql = loginSql;
 
   if(email && password) {
@@ -44,7 +43,6 @@ async function login(email, password) {
 
     sql += `\nwhere email = '${email}' AND password = '${password}'`;
   }
-  console.log(sql, binds);
   const result = await database.simpleExecute(sql, {});
   
   if(result && result.rows) {
