@@ -12,7 +12,7 @@ class AddPatientModal extends Component {
             patientName: '',
             age: '',
             sex: '',
-            phoneNumber: '',
+            phone: '',
             address: '',
             doctor: props.doctor
         }
@@ -26,11 +26,11 @@ class AddPatientModal extends Component {
     }
 
     addPatient() {
-        const {doctor, patientName, age, sex, phoneNumber, address} = this.state;
+        const {doctor, patientName, age, sex, phone, address} = this.state;
         const patient = {
             doctor,
             patientName,
-            age, sex, phoneNumber, 
+            age, sex, phone, 
             address
         }
 
@@ -49,7 +49,7 @@ class AddPatientModal extends Component {
 
     render() {
         let { isModalOpen } = this.props;
-        let {doctor, patientName, age, sex, phoneNumber, address} = this.state;
+        let {doctor, patientName, age, sex, phone, address} = this.state;
 
         let isAddButtonDisabled = !patientName || !age || !sex;
 
@@ -65,7 +65,7 @@ class AddPatientModal extends Component {
                         <Input type="text" name="patientName" value={patientName} onChange={this.onChange} placeholder="Enter Patient Name"></Input>
                         <Input type="number" name="age" value={age} onChange={this.onChange} placeholder="Age"></Input>
                         <Input type="text" name="sex" value={sex} onChange={this.onChange} placeholder="Sex"></Input>
-                        <Input type="text" name="phoneNumber" value={phoneNumber} onChange={this.onChange} placeholder="Phone number"></Input>
+                        <Input type="text" name="phone" value={phone} onChange={this.onChange} placeholder="Phone number"></Input>
                         <Input type="text" name="address" value={address} onChange={this.onChange} placeholder="Address"></Input>
 
                         <div>

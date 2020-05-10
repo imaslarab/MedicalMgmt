@@ -33,8 +33,7 @@ class EditPatientModal extends Component {
             dob, sex, phone, 
             address
         }
-
-        debugger;
+        
         // ElementApi.addTextElement(currentPage.pageId, textElement, (response) => {
         //     window.location.reload(true);
         // }) ;

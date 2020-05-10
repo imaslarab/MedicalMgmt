@@ -6,6 +6,7 @@ const baseQuery =
   users.userid "doctorId", 
   users.name "doctorName", 
   users.phone "phone", 
+  users.email "email",
   doctor.speciality "speciality",
   from users, doctor
   where doctor.doctorid = users.userid`;
@@ -29,6 +30,7 @@ const findAllSql =
   users.userid "doctorId", 
   users.name "doctorName", 
   users.phone "phone", 
+  users.email "email",
   doctor.speciality "speciality"
   from users, doctor
   where doctor.doctorid = users.userid`;
