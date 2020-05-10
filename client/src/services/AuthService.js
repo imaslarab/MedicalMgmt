@@ -40,6 +40,14 @@ class AuthService {
         return storageRepository.getItem(StorageKeys.UserRole);
     }
 
+    getUserDetail() {
+        let user = {
+            userId: storageRepository.getItem(StorageKeys.UserId),
+            name: storageRepository.getItem(StorageKeys.UserName),
+            email: storageRepository.getItem(StorageKeys.Email),
+        }
+        return user;
+    }
 
     login(value, password) {
         let request = {
@@ -47,7 +55,6 @@ class AuthService {
             password: password
         };
 
-        
         let url = '/login';
         
         return httpService.post(url, request, (response) => {

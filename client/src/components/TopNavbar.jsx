@@ -10,7 +10,7 @@ class TopNavbar extends Component {
         super(props);
         this.state = {
             userRole: '',
-            userName: ''
+            user: {}
         }
         this.logout = this.logout.bind(this);
     }
@@ -21,32 +21,23 @@ class TopNavbar extends Component {
     }
 
     componentDidMount() {
-        this.setState({userRole: authService.getUserRole()});
+        this.setState({userRole: authService.getUserRole(), user: authService.getUserDetail()});
     }
 
     render() {
-        let {userRole} = this.state;
+        let {userRole, user} = this.state;
 
         let loginDetails = {
-            name: '',
-            profileIcon: ''
+            name: userRole == 'doctor' ? 'Dr. ' + user.name : user.name,
+            profileIcon: null
         }
 
-        switch(userRole) {
-            case 'doctor':
-                loginDetails.name = 'Dr. Robin';
-                loginDetails.profileIcon = doctorImg;
-
-                break;
-            case 'admin':
-                loginDetails.name = 'Jack Ferrante';
-                loginDetails.profileIcon = adminImg;
-                break;
-            case 'patient':
-            default:
-                loginDetails.name = 'Sami Baral';
-                loginDetails.profileIcon = patientImg;
-                break;
+        if(userRole == 'doctor') {
+            loginDetails.profileIcon = doctorImg;
+        } else if (userRole == 'admin') {
+            loginDetails.profileIcon = adminImg;
+        } else {
+            loginDetails.profileIcon = patientImg;
         }
 
         return (
