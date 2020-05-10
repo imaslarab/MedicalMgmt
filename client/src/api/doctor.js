@@ -19,8 +19,8 @@ class DoctorApi {
         return httpService.post(url, doctor, callback);
     }
 
-    static editDoctor(doctor, callback) {
-        let url = `/doctors`;
+    static editDoctor(doctorId, doctor, callback) {
+        let url = `/doctors/${doctorId}`;
 
         return httpService.put(url, doctor, callback);
     }

@@ -33,7 +33,6 @@ class PatientPage extends Component {
         this.setState({patients});
     }
 
-
     deletePatient(patientId) {
         PatientApi.deletePatient(patientId, (response) => {
             let {patients} = this.state;

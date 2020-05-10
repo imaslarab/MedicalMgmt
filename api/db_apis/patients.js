@@ -5,7 +5,8 @@ const baseQuery =
 `select 
   users.userid "patientId", 
   users.name "patientName", 
-  users.phone "phone", 
+  users.phone "phone",
+  users.password "password", 
   patient.address "address", 
   patient.sex "sex", 
   patient.dob  "dob"
@@ -31,6 +32,8 @@ const findAllSql =
   patient.patientid "patientId", 
   users.name "patientName", 
   users.phone "phone", 
+  users.email "email",
+  users.password "password",
   patient.address "address", 
   patient.sex "sex", 
   patient.dob  "dob"
@@ -73,13 +76,14 @@ module.exports.create = create;
 
 const updateSql =
  `update patient
-  set address = :address,
-    sex = :sex,
-    dob = :dob
-  where patientid = :patientid`;
+    set address = :address,
+      sex = :sex,
+      dob = :dob
+    where patientid = :patientid`;
 
 async function update(p) {
   const patient = Object.assign({}, p);
+
   const result = await database.simpleExecute(updateSql, patient);
 
   if (result.rowsAffected && result.rowsAffected === 1) {

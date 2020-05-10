@@ -76,7 +76,7 @@ class DoctorPage extends Component {
             <div id="content">
                 <div className="container-fluid">
                 <h1 className="h3 mb-4 text-gray-800">Doctors List 
-                    <a className="btn btn-primary ml-3" onClick={this.openAddDoctorModal}><i className="fa fa-plus"></i></a>
+                    <a href="#" className="btn btn-primary ml-3" onClick={this.openAddDoctorModal}><i className="fa fa-plus"></i></a>
                 </h1>
                 
                 { isLoading ? 
