@@ -130,21 +130,28 @@ module.exports.post = post;
 
 async function put(req, res, next) {
   try {
-    let patient = getPatientFromRec(req);
-    patient.patientid = req.params.id;
-    console.log("Updating patient");
-    console.log(patient);
-    patient = await patients.update(patient);
+    let user = getUserFromRec(req);
+    user.userid = req.params.id;
 
-    if (patient !== null) {
-      res.contentType('application/json').status(200);
-      res.send(JSON.stringify(patient));
-    } else {
-      res.status(404).send(JSON.stringify({
-        status: 404,
-        message: "Error updating patient information"
-        // detailed_message: err.message
-      }));
+    user = await users.update(user);
+    console.log("user updated ", user);
+    if(user !== null) {
+      let patient = getPatientFromRec(req);
+      patient.patientid = user.userid;
+
+      patient = await patients.update(patient);
+
+      if (patient !== null) {
+        let data = getPatientData(user, patient);
+        res.contentType('application/json').status(200);
+        res.send(JSON.stringify(data));
+      } else {
+        res.status(404).send(JSON.stringify({
+          status: 404,
+          message: "Error updating patient information"
+          // detailed_message: err.message
+        }));
+      }
     }
   } catch (err) {
     next(err);

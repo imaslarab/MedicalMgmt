@@ -92,8 +92,9 @@ const updateSql =
   set name = :name,
     phone = :phone,
     email = :email,
-    password = :passowrd
-  where patientid = :patientid`;
+    password = :password,
+    role = :role
+  where userid = :userid`;
 
 async function update(usr) {
   const user = Object.assign({}, usr);

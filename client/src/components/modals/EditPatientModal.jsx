@@ -5,16 +5,21 @@ import Form from '../Form';
 import Input from '../Input';
 import DropDown from '../DropDown';
 
+import PatientApi from '../../api/patient';
+import { utilService } from '../../services/UtilService';
+
 class EditPatientModal extends Component {
     constructor(props) {
         super(props);
         this.state = {
             patientName: '',
+            patientId: '',
             dob: '',
             sex: '',
             phone: '',
             address: '',
-            doctor: props.doctor
+            email: '',
+            password: '',
         }
     
         this.onChange = this.onChange.bind(this);
@@ -26,28 +31,27 @@ class EditPatientModal extends Component {
     }
 
     editPatient() {
-        const {doctor, patientName, dob, sex, phone, address} = this.state;
+        const {patientId, patientName, dob, sex, phone, email, password, address} = this.state;
         const patient = {
-            doctor,
             patientName,
-            dob, sex, phone, 
+            dob: utilService.formatDBDate(dob),
+            sex, phone, email, password, 
             address
         }
-        
-        // ElementApi.addTextElement(currentPage.pageId, textElement, (response) => {
-        //     window.location.reload(true);
-        // }) ;
 
+        PatientApi.editPatient(patientId, patient, (response) => {
+            window.location.reload();
+        });
     }
 
-    componentWillReceiveProps({doctor, patient}) {
-        this.setState({...this.state, doctor, patientName:patient.patientName, 
-            dob:patient.dob, sex:patient.sex, phone:patient.phone, address:patient.address})
+    componentWillReceiveProps({patient}) {
+        this.setState({...this.state, patientId: patient.patientId, patientName:patient.patientName, 
+            dob:patient.dob, email:patient.email, password:patient.password, sex:patient.sex, phone:patient.phone, address:patient.address})
     }
 
     render() {
         let { isModalOpen } = this.props;
-        let {doctor, patientName, dob, sex, phone, address} = this.state;
+        let {patientName, dob, sex, phone, address, email, password} = this.state;
 
         let isAddButtonDisabled = false;
 
@@ -61,6 +65,8 @@ class EditPatientModal extends Component {
                 <div className="Modal__body  clearfix">
                     <Form onSubmit={this.editPatient}>
                         <Input type="text" name="patientName" value={patientName} onChange={this.onChange} placeholder="Enter Patient Name"></Input>
+                        <Input type="text" name="email" value={email} onChange={this.onChange} placeholder="Email"></Input>
+                        <Input type="password" name="password" value={password} onChange={this.onChange} placeholder="Password"></Input>
                         <Input type="date" name="dob" value={dob} onChange={this.onChange} placeholder="Date of Birth"></Input>
                         <Input type="text" name="sex" value={sex} onChange={this.onChange} placeholder="Sex"></Input>
                         <Input type="text" name="phone" value={phone} onChange={this.onChange} placeholder="Phone number"></Input>

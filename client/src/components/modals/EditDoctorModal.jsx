@@ -5,10 +5,13 @@ import Form from '../Form';
 import Input from '../Input';
 import DropDown from '../DropDown';
 
+import DoctorApi from '../../api/doctor';
+
 class EditDoctorModal extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            doctorId: '',
             doctorName: '',
             phone: '',
             email: '',
@@ -25,7 +28,7 @@ class EditDoctorModal extends Component {
     }
 
     editDoctor() {
-        const {doctorName, phone, email, password, speciality} = this.state;
+        const {doctorId, doctorName, phone, email, password, speciality} = this.state;
         const doctor = {
             doctorName,
             phone, 
@@ -33,12 +36,14 @@ class EditDoctorModal extends Component {
             password,
             speciality
         }
-
-        this.props.closeModal();
+        
+        DoctorApi.editDoctor(doctorId, doctor, (response) => {
+            window.location.reload();
+        });
     }
 
     componentWillReceiveProps({doctor}) {
-        this.setState({...this.state, doctorName:doctor.doctorName, phone: doctor.phone, 
+        this.setState({...this.state, doctorId:doctor.doctorId, doctorName:doctor.doctorName, phone: doctor.phone, 
             email:doctor.email, password: doctor.password, speciality: doctor.speciality});
     }
 
