@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 
+import {utilService} from '../services/UtilService';
+
 class AppointmentCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            appointment: props.appointment,
-            patient: props.appointment.patient
+            appointment: props.appointment
         };
     }
 
 	render() {
-        const {appointment, patient} = this.state;
+        const {appointment} = this.state;
         let inactive = this.props.inactive;
+
+        let time = utilService.formatTimeFromDate(appointment.appointDate);
+        let date = utilService.formatDate(appointment.appointDate);
 
         let activeCardClass = inactive ? 'border-left-inactive' : 'border-left-info';
 		return (
@@ -20,10 +24,11 @@ class AppointmentCard extends Component {
                     <div className="card-body">
                     <div className="row no-gutters align-items-center">
                         <div className="col mr-2">
-                            <div className={`text-xs font-weight-bold ${inactive ? '' : 'text-success'} text-uppercase mb-1`}>Appointment {appointment.appointmentId}</div>
-                                <div className="h5 mb-0 font-weight-bold text-gray-800">Date: {appointment.date}</div>
-                                <div>Time: {appointment.time}</div>
-                                {patient ? <div>Patient: {patient.patientName}</div> : null}
+                            <div className={`text-xs font-weight-bold ${inactive ? '' : 'text-success'} text-uppercase mb-1`}>Appointment {appointment.key}</div>
+                                <div className="h5 mb-0 font-weight-bold text-gray-800">Date: {date}</div>
+                                <div>Time: {time}</div>
+                                {appointment.patientId ? <div>Patient: {appointment.patientId}</div> : null}
+                                {appointment.doctorId ? <div>Doctor: {appointment.doctorId}</div> : null}
                             </div>
                             <div className="col-auto">
                                 <i className="fa fa-calendar fa-2x text-gray-300"></i>
