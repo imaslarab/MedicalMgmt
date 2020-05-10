@@ -34,8 +34,6 @@ async function find(context) {
     else if (context.doctorid)
         query += `\nWHERE appointment.doctorid = '${context.doctorid}'`;
 
-    console.log("Query: " + query);
-
     const result = await database.simpleExecute(query, {});
 
     return result.rows;
@@ -85,26 +83,63 @@ module.exports.create = create;
 //
 // module.exports.update = update;
 //
-// // TODO: We need to delete patientid from any table that references patient (cascade)
-// // This might include: Appointment, VisitDetail, and BillingInfo_Billed
-// const deleteSql =
+
+// const deleteSqlTest =
 //     `begin
-//     delete from patient
+//     delete from appointment
 //     where patientid = :patientid;
 //     :rowcount := sql%rowcount;
 //   end;`;
 //
-// async function del(id) {
-//     const binds = {
-//         patientid: id,
-//         rowcount: {
-//             dir: oracledb.BIND_OUT,
-//             type: oracledb.NUMBER
-//         }
-//     };
-//     const result = await database.simpleExecute(deleteSql, binds);
+// const deleteDoctorAppSql =
+//     `begin
+//     delete from appointment
+//     where doctorid = :doctorid;
+//     :rowcount := sql%rowcount;
+//   end;`;
+
+// const delSqlStart =
+//     `begin
+//     delete from visitdetail
+//     `;
 //
-//     return result.outBinds.rowcount === 1;
-// }
-//
-// module.exports.delete = del;
+// const delSqlEnd =
+//     `:rowcount := sql%rowcount;
+//   end;`;
+
+async function del(context) {
+    const binds = {
+        rowcount: {
+            dir: oracledb.BIND_OUT,
+            type: oracledb.NUMBER
+        }
+    };
+    let condition = ``;
+
+    if (context.patientid) {
+        binds.patientid = context.patientid;
+        condition = `where patientid = :patientid;\n`;
+    }
+    else if (context.doctorid) {
+        binds.doctorid = context.doctorid;
+        condition = `where doctorid = :doctorid;\n`;
+    }
+
+    const delSql =
+        `begin
+        delete from visitdetail
+        ` + condition
+        + `delete from appointment
+        ` + condition
+        + `:rowcount := sql%rowcount;
+        end;`;
+
+    console.log("Query: " + delSql);
+    console.log(binds);
+    const result = await database.simpleExecute(delSql, binds);
+    console.log(result);
+
+    return result.outBinds.rowcount >= 1;
+}
+
+module.exports.delete = del;

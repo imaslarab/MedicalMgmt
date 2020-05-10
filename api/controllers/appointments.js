@@ -95,19 +95,19 @@ module.exports.post = post;
 
 // async function put(req, res, next) {
 //     try {
-//         let patient = getPatientFromRec(req);
-//         patient.patientid = req.params.id;
+//         let appointment = getAppointmentFromRec(req);
+//         // appointment.patientid = req.params.id;
 //         console.log("Updating patient");
-//         console.log(patient);
-//         patient = await patients.update(patient);
+//         console.log(appointment);
+//         appointment = await appointments.update(appointment);
 //
-//         if (patient !== null) {
+//         if (appointment !== null) {
 //             res.contentType('application/json').status(200);
-//             res.send(JSON.stringify(patient));
+//             res.send(JSON.stringify(appointment));
 //         } else {
 //             res.status(404).send(JSON.stringify({
 //                 status: 404,
-//                 message: "Error updating patient information"
+//                 message: "Error updating appointment information"
 //                 // detailed_message: err.message
 //             }));
 //         }
@@ -117,26 +117,34 @@ module.exports.post = post;
 // }
 //
 // module.exports.put = put;
-//
-// async function del(req, res, next) {
-//     try {
-//         const id = req.params.id;
-//         console.log("Deleting: " + id);
-//         const success = await patients.delete(id);
-//
-//         if (success) {
-//             res.contentType('application/json').status(200);
-//             res.send(JSON.stringify({status:200, message:'Deleted patient ' + id}));
-//         } else {
-//             res.status(404).send(JSON.stringify({
-//                 status: 404,
-//                 message: "Error deleting the patient"
-//                 // detailed_message: err.message
-//             }));
-//         }
-//     } catch (err) {
-//         next(err);
-//     }
-// }
-//
-// module.exports.delete = del;
+
+async function del(req, res, next) {
+    try {
+        const context = {};
+        if(req.params.doctorid)
+            context.doctorid = req.params.doctorid;
+        else if(req.params.patientid)
+            context.patientid = req.params.patientid;
+
+        console.log(context);
+        const success = await appointments.delete(context);
+
+        if (success) {
+            res.contentType('application/json').status(200);
+            if(req.params.doctorid)
+                res.send(JSON.stringify({status:200, message:'Deleted appointments for doctor ' + context.doctorid}));
+            else if(req.params.patientid)
+                res.send(JSON.stringify({status:200, message:'Deleted appointments for patient ' + context.patientid}));
+        } else {
+            res.status(404).send(JSON.stringify({
+                status: 404,
+                message: "Error deleting the appointment"
+                // detailed_message: err.message
+            }));
+        }
+    } catch (err) {
+        next(err);
+    }
+}
+
+module.exports.delete = del;

@@ -28,16 +28,15 @@ router.route('/doctors/:id?')
 router.route('/appointments')
     .get(appointments.getAll)
     .post(appointments.post); // TODO: Allows creating appointments with same doctor and on same date as different patient
+    // .put(appointments.put)
 
 router.route('/appointments/patients/:patientid?')
-    .get(appointments.get);
+    .get(appointments.get)
+    .delete(appointments.delete);
 
 router.route('/appointments/doctors/:doctorid?')
-    .get(appointments.get);
-
-// router.route('/appointments/:id?')
-//     .put(appointments.put)
-//     .delete(appointments.delete);
+    .get(appointments.get)
+    .delete(appointments.delete);
 
 router.route('/login?')
     .post(users.login);
