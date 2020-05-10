@@ -29,7 +29,6 @@ class PatientPage extends Component {
 
     addPatient(patient) {
         let {patients} = this.state;
-        patient.patientd = patients[patients.length-1].patientId + 1;
         patients.push(patient);
         this.setState({patients});
     }

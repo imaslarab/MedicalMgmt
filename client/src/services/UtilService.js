@@ -43,6 +43,15 @@ class UtilService {
         return weekDay + '. ' + month + '/' + day;
     }
 
+    formatDBDate(date) {
+        date = new Date(date);
+        let year = date.getFullYear().toString().substr(-2)
+        let month = date.toLocaleDateString('en-us', {  month: 'short' })
+        let day = date.getDate();
+    
+        return day + '-' + month + '-' + year;
+    }
+
     formatDateString(date) {
         date = new Date(date);
         let year = date.getFullYear();

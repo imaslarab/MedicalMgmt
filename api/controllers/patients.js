@@ -80,6 +80,20 @@ function getUserFromRec(req) {
   return user;
 }
 
+function getPatientData(user, patient) {
+  return {
+    patientId: user.userid,
+    patientName: user.name,
+    phone: user.phone,
+    email: user.email,
+    password: user.password,
+    role: user.role,
+    sex: patient.sex,
+    dob: patient.dob,
+    address: patient.address
+  };
+}
+
 async function post(req, res, next) {
   try {
     let user = getUserFromRec(req);
@@ -96,8 +110,9 @@ async function post(req, res, next) {
       patient = await patients.create(patient);
 
       if (patient !== null) {
+        let data = getPatientData(user, patient);
         res.contentType('application/json').status(200);
-        res.send(JSON.stringify(patient));
+        res.send(JSON.stringify(data));
       } else {
         res.status(404).send(JSON.stringify({
           status: 404,
