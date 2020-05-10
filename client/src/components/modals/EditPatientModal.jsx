@@ -10,9 +10,9 @@ class EditPatientModal extends Component {
         super(props);
         this.state = {
             patientName: '',
-            age: '',
+            dob: '',
             sex: '',
-            phoneNumber: '',
+            phone: '',
             address: '',
             doctor: props.doctor
         }
@@ -26,14 +26,15 @@ class EditPatientModal extends Component {
     }
 
     editPatient() {
-        const {doctor, patientName, age, sex, phoneNumber, address} = this.state;
+        const {doctor, patientName, dob, sex, phone, address} = this.state;
         const patient = {
             doctor,
             patientName,
-            age, sex, phoneNumber, 
+            dob, sex, phone, 
             address
         }
 
+        debugger;
         // ElementApi.addTextElement(currentPage.pageId, textElement, (response) => {
         //     window.location.reload(true);
         // }) ;
@@ -42,12 +43,12 @@ class EditPatientModal extends Component {
 
     componentWillReceiveProps({doctor, patient}) {
         this.setState({...this.state, doctor, patientName:patient.patientName, 
-            age:patient.age, sex:patient.sex, phoneNumber:patient.phoneNumber, address:patient.address})
+            dob:patient.dob, sex:patient.sex, phone:patient.phone, address:patient.address})
     }
 
     render() {
         let { isModalOpen } = this.props;
-        let {doctor, patientName, age, sex, phoneNumber, address} = this.state;
+        let {doctor, patientName, dob, sex, phone, address} = this.state;
 
         let isAddButtonDisabled = false;
 
@@ -61,9 +62,9 @@ class EditPatientModal extends Component {
                 <div className="Modal__body  clearfix">
                     <Form onSubmit={this.editPatient}>
                         <Input type="text" name="patientName" value={patientName} onChange={this.onChange} placeholder="Enter Patient Name"></Input>
-                        <Input type="number" name="age" value={age} onChange={this.onChange} placeholder="Age"></Input>
+                        <Input type="date" name="dob" value={dob} onChange={this.onChange} placeholder="Date of Birth"></Input>
                         <Input type="text" name="sex" value={sex} onChange={this.onChange} placeholder="Sex"></Input>
-                        <Input type="text" name="phoneNumber" value={phoneNumber} onChange={this.onChange} placeholder="Phone number"></Input>
+                        <Input type="text" name="phone" value={phone} onChange={this.onChange} placeholder="Phone number"></Input>
                         <Input type="text" name="address" value={address} onChange={this.onChange} placeholder="Address"></Input>
 
                         <div>

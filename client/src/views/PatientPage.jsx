@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { utilService } from '../services/UtilService';
+
 import PatientCard from '../components/PatientCard';
 import PatientApi from '../api/patient';
 
@@ -65,6 +67,7 @@ class PatientPage extends Component {
 
         if(patients) {
             patients.forEach((patient) => {
+                patient.dob = new Date(patient.dob);
                 cardsList.push(<PatientCard key={patient.patientId} patient={patient} 
                     openEditPatientModal={this.openEditPatientModal}  deletePatient={this.deletePatient} {...this.props}></PatientCard>);
             });
