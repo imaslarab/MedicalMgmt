@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 
 import AppointmentCard from '../../components/AppointmentCard';
-// import PatientApi from '../api/patient';
+import AppointmentApi from '../../api/appointment';
+import AuthService from '../../services/AuthService';
 
 class PAppointment extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            userId: AuthService.getUserId(),
             isLoading: false,
             appointments: [],
             past_appointments: []
@@ -14,9 +16,10 @@ class PAppointment extends Component {
     }
 
     componentDidMount() {
-        // PatientApi.listAllPatients((response)=> {
-        //     this.setState({...this.state, isLoading:false, patients:response.patients});
-        // });
+        let {userId} = this.state;
+        AppointmentApi.getAppointmentByPatient(userId, (response)=> {
+            this.setState({...this.state, isLoading:false, appointments:response});
+        });
     }
 
     render() {
@@ -26,23 +29,25 @@ class PAppointment extends Component {
 
         const pastCards = [];
         
-        let patient = {patientId:1, patientName:"Sami Baral", age:25, sex:"Female", phoneNumber:'220922029', address:'Worcester, MA'};
-        appointments = [
-            {appointmentId:21, date:"April 27, 2020", time:"5:30pm"},
-            {appointmentId:22, date:"June 27, 2020", time:"4:00pm"},
-            {appointmentId:23, date:"August 27, 2020", time:"3:30pm"}
-        ];
+        // // let patient = {patientId:1, patientName:"Sami Baral", age:25, sex:"Female", phoneNumber:'220922029', address:'Worcester, MA'};
+        // appointments = [
+        //     {appointmentId:21, date:"April 27, 2020", time:"5:30pm"},
+        //     {appointmentId:22, date:"June 27, 2020", time:"4:00pm"},
+        //     {appointmentId:23, date:"August 27, 2020", time:"3:30pm"}
+        // ];
 
         past_appointments = [
-            {appointmentId:11, date:"March 27, 2020", time:"3:00pm"},
-            {appointmentId:12, date:"Feb 27, 2020", time:"3:00pm"},
-            {appointmentId:13, date:"Dec 27, 2019", time:"2:00pm"}
+            {appointmentId:11, appointDate:"03/27/2020"},
+            {appointmentId:12, appointDate:"02/17/2020"},
+            {appointmentId:13, appointDate:"12/9/2019"}
         ];
 
         if(appointments) {
             appointments.forEach((appointment) => {
                 cardsList.push(<AppointmentCard key={appointment.appointmentId} appointment={appointment} {...this.props}></AppointmentCard>);
             });
+        } else {
+            cardsList.push(<span>No Upcoming Appointments</span>);
         }
 
         if(past_appointments) {

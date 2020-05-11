@@ -73,10 +73,12 @@ class AppointmentPage extends Component {
         //     {appointmentId:6, date:"May 3, 2020", time:"3:00pm", patient:patients[0]},
         //     {appointmentId:7, date:"May 25, 2020", time:"3:00pm", patient:patients[1]},
         // ];
-        if(appointments) {
+        if(appointments && appointments.length > 0) {
             appointments.forEach((appointment) => {
                 cardsList.push(<AppointmentCard key={appointment.appointmentId} patient={appointment.patient} appointment={appointment} {...this.props}></AppointmentCard>);
             });
+        } else {
+            cardsList.push(<span key="02121">No Appointments</span>);
         }
 
         return (
