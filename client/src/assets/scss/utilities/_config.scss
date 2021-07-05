@@ -1,0 +1,113 @@
+//Text
+$base__font-size: 16px;
+$base__line: 24px;
+
+//Font Stacks
+$font-family--primary: 'MarkOTBook', arial, sans-serif;
+$font-family--primary-medium: 'MarkOTMedium', arial, sans-serif;
+$font-family--primary-bold: 'MarkOTBold', arial, sans-serif;
+$font-family--secondary: 'Lato', arial, sans-serif;
+
+//Colors
+$white: #fff;
+$black: #292a2e;
+$monza: #D0021B;
+$gray: #6d6e71;
+$blue: #4990e2;
+$shark: #292a2e;
+$caribbean-green: #00ccae;
+$alabaster: #f7f7f7;
+$mystic: #e0edec;
+$trout: #4c4f59;
+$pink: #eb888b;
+$orange: #F7A623;
+$yellow: #f9b50b;
+$aqua: #00dcff;
+$nevada: #6D6E71;
+$alto: #D1D1D1;
+$seance: #a521a9;
+$navy-blue: #000072;
+$havelock-blue: #4A90E2;
+$rolling-stone: #797C80;
+$iron: #E9E9EA;
+$silver-sand: #BEBFC0;
+$bombay: #afb0b3;
+$athens-gray: #EFF2F5;
+$mischka: #d1d6dc;
+$monza: #D0011B;
+$black-squeeze: #F2FAFA;
+$egg-blue: #00E0BA;
+$selago: #F4F9FE;
+$buttercup: #F6A623;
+$boulder: #7B7B7B;
+$mercury: #E6E6E6;
+$royal-blue: #0000bc;
+$clear-day: #eefff8;
+$dandelion: #FED65A;
+$athens-gray: #E0E3E7;
+$link-water:#E6F0FA;
+$silver: #cbcbcb;
+$mountain-meadow: #19a59a;
+
+$battleship-grey: #7a7c7f;
+$dark-silver: #bcbdbf;
+//Message Colors
+$error: lighten(rgb(254,40,81),15%) !default;
+$success: lighten(#27ae60, 30%) !default;
+$edit: rgba(255, 226, 109, 0.3) !default;
+
+//Bootstrap Breakpoints
+$xs-device: 480px;
+$sm-device: 768px;
+$md-device: 992px;
+$lg-device: 1200px;
+
+$medium: 600px;
+$large: 800px;
+$extra-large: 1024px;
+
+//UI Colors
+$ui-colors: (
+    default: $blue,
+    success: $success,
+    error: $error,
+    warning: $edit
+);
+
+//Font variables
+$default-font-size: $base__font-size - 2px;
+$small-font-size: $default-font-size - 2px;
+$lg-font-size: $default-font-size + 2px;
+$xlg-font-size: $default-font-size + 4px;
+
+//Heading Vairables
+$heading-line-height: 28px !default;
+$head1-font-size: 26px !default;
+$head2-font-size: $head1-font-size - 4px !default;
+$head3-font-size: $head1-font-size - 8px !default;
+
+//Color Usage
+$primary-color: $havelock-blue;
+$secondary-color: $athens-gray;
+$accent-color: $alabaster;
+$shadow-color: rgba($black, .2);
+$color-text: $black;
+$color-link: $caribbean-green;
+$input-color: $rolling-stone;
+$btn-color: $caribbean-green;
+$border-color: $silver-sand;
+$error: $monza;
+$btn-hover: $egg-blue;
+$info-bg: $selago;
+$color-orange: $buttercup;
+$common-gray: $mischka;
+$login-background: $clear-day;
+$nav-active: $dandelion;
+
+//Path to Assets
+$path--rel: "../images";
+$path-font: "../fonts";
+
+%clearfix-none {
+    display: inline;
+}

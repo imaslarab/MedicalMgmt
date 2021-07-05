@@ -1,0 +1,15 @@
+.profile-img {
+    width: 150px;
+    height: 150px;
+}
+
+.profile-detail{
+    margin: auto;
+    p {
+        margin: 0;
+    }
+
+    p > * {
+        margin-right: 20px;
+    }
+}
